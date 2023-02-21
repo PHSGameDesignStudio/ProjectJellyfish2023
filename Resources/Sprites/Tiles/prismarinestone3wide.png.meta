@@ -1,5 +1,9 @@
 fileFormatVersion: 2
-guid: cf4fdc5ab2bca694992efe89727cdaff
+<<<<<<< HEAD
+guid: 05d7acad84aff974baa63d1712dcfe5a
+=======
+guid: dd2e2de6659b40043990bc41cdb3d212
+>>>>>>> overworld
 TextureImporter:
   fileIDToRecycleName: {}
   externalObjects: {}
@@ -31,7 +35,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: -1
+    filterMode: 0
     aniso: -1
     mipBias: -100
     wrapU: 1
@@ -45,7 +49,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 32
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
