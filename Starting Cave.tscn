@@ -1,23 +1,16 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://Resources/Sprites/prismarine.png" type="Texture" id=1]
 [ext_resource path="res://Resources/Sprites/prismarinestone3wide.png" type="Texture" id=2]
 [ext_resource path="res://Resources/Sprites/sand.png" type="Texture" id=3]
 [ext_resource path="res://Resources/Sprites/prismarinestone8wide.png" type="Texture" id=4]
-[ext_resource path="res://Resources/Sprites/Tiles/_walltop4.png" type="Texture" id=5]
-[ext_resource path="res://Resources/Sprites/Player/Forward_walk-2.png" type="Texture" id=6]
-[ext_resource path="res://Resources/Sprites/Player/Forward_walk-4.png" type="Texture" id=7]
-[ext_resource path="res://Resources/Sprites/Player/Brief_Walkcycle-4.png" type="Texture" id=8]
-[ext_resource path="res://Resources/Sprites/Player/Backward_Walkcycle-2.png" type="Texture" id=9]
-[ext_resource path="res://Resources/Sprites/Player/Backward_Walkcycle-4.png" type="Texture" id=10]
-[ext_resource path="res://Resources/Sprites/Player/Brief_Walkcycle-2.png" type="Texture" id=11]
-[ext_resource path="res://Resources/Sprites/Player/Backward_Walkcycle-1.png" type="Texture" id=12]
-[ext_resource path="res://Resources/Sprites/Player/Brief_Walkcycle-1.png" type="Texture" id=13]
-[ext_resource path="res://Resources/Sprites/Player/Forward_walk-1.png" type="Texture" id=14]
-[ext_resource path="res://Player.gd" type="Script" id=15]
+[ext_resource path="res://Resources/Sprites/Tiles/plain/_walltop4.png" type="Texture" id=5]
+[ext_resource path="res://pixil-frame-0 (25).png" type="Texture" id=6]
+[ext_resource path="res://Area2D1.gd" type="Script" id=7]
+[ext_resource path="res://World.gd" type="Script" id=8]
+[ext_resource path="res://Player.tscn" type="PackedScene" id=9]
 
 [sub_resource type="TileSet" id=1]
-resource_local_to_scene = true
 0/name = "prismarine.png 0"
 0/texture = ExtResource( 1 )
 0/tex_offset = Vector2( 0, 0 )
@@ -32,8 +25,8 @@ resource_local_to_scene = true
 0/shape_one_way_margin = 0.0
 0/shapes = [  ]
 0/z_index = 0
-1/name = "sand.png 1"
-1/texture = ExtResource( 3 )
+1/name = "prismarinestone3wide.png 1"
+1/texture = ExtResource( 2 )
 1/tex_offset = Vector2( 0, 0 )
 1/modulate = Color( 1, 1, 1, 1 )
 1/region = Rect2( 0, 0, 32, 32 )
@@ -46,8 +39,8 @@ resource_local_to_scene = true
 1/shape_one_way_margin = 0.0
 1/shapes = [  ]
 1/z_index = 0
-2/name = "prismarinestone3wide.png 2"
-2/texture = ExtResource( 2 )
+2/name = "prismarinestone8wide.png 2"
+2/texture = ExtResource( 4 )
 2/tex_offset = Vector2( 0, 0 )
 2/modulate = Color( 1, 1, 1, 1 )
 2/region = Rect2( 0, 0, 32, 32 )
@@ -60,8 +53,8 @@ resource_local_to_scene = true
 2/shape_one_way_margin = 0.0
 2/shapes = [  ]
 2/z_index = 0
-3/name = "prismarinestone8wide.png 3"
-3/texture = ExtResource( 4 )
+3/name = "sand.png 3"
+3/texture = ExtResource( 3 )
 3/tex_offset = Vector2( 0, 0 )
 3/modulate = Color( 1, 1, 1, 1 )
 3/region = Rect2( 0, 0, 32, 32 )
@@ -89,106 +82,71 @@ resource_local_to_scene = true
 4/shapes = [  ]
 4/z_index = 0
 
-[sub_resource type="RectangleShape2D" id=8]
-extents = Vector2( 17.1214, 42.2923 )
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 348.708, 26.4418 )
 
-[sub_resource type="SpriteFrames" id=3]
-animations = [ {
-"frames": [ ExtResource( 9 ), ExtResource( 10 ) ],
-"loop": true,
-"name": "backward",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 13 ) ],
-"loop": true,
-"name": "idle forward",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 14 ) ],
-"loop": true,
-"name": "idle left_right",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 11 ), ExtResource( 8 ) ],
-"loop": true,
-"name": "forward",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 6 ), ExtResource( 14 ), ExtResource( 7 ) ],
-"loop": true,
-"name": "left_right",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 12 ) ],
-"loop": true,
-"name": "idle backward",
-"speed": 5.0
-} ]
-
-[sub_resource type="RectangleShape2D" id=9]
-extents = Vector2( 315.542, 19.5002 )
-
-[sub_resource type="RectangleShape2D" id=5]
+[sub_resource type="RectangleShape2D" id=3]
 extents = Vector2( 28.7431, 104.827 )
 
-[sub_resource type="RectangleShape2D" id=6]
+[sub_resource type="RectangleShape2D" id=4]
 extents = Vector2( 331.463, 24.0997 )
 
-[sub_resource type="RectangleShape2D" id=7]
+[sub_resource type="RectangleShape2D" id=5]
 extents = Vector2( 24.3621, 197.497 )
 
+[sub_resource type="RectangleShape2D" id=6]
+extents = Vector2( 10, 73.3358 )
+
 [node name="Starting Cave" type="Node2D"]
-position = Vector2( 2.45422, 0 )
+script = ExtResource( 8 )
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource( 1 )
 cell_size = Vector2( 32, 32 )
 format = 1
-tile_data = PoolIntArray( -1, 4, 0, -65536, 4, 0, -65535, 4, 0, -65534, 4, 0, -65533, 4, 0, -65532, 4, 0, -65531, 4, 0, -65530, 4, 0, -65529, 4, 0, -65528, 4, 0, -65527, 4, 0, -65526, 4, 0, -65525, 4, 0, -65524, 4, 0, -65523, 4, 0, -65522, 4, 0, -65521, 4, 0, -65520, 4, 0, -65519, 4, 0, 65535, 4, 0, 0, 3, 0, 1, 3, 0, 2, 3, 0, 3, 3, 0, 4, 3, 0, 5, 3, 0, 6, 3, 0, 7, 3, 0, 8, 3, 0, 9, 3, 0, 10, 3, 0, 11, 3, 0, 12, 3, 0, 13, 3, 0, 14, 3, 0, 15, 3, 0, 16, 3, 0, 17, 4, 0, 131071, 4, 0, 65536, 3, 0, 65537, 3, 0, 65538, 3, 0, 65539, 3, 0, 65540, 3, 0, 65541, 3, 0, 65542, 3, 0, 65543, 3, 0, 65544, 3, 0, 65545, 3, 0, 65546, 3, 0, 65547, 3, 0, 65548, 3, 0, 65549, 3, 0, 65550, 3, 0, 65551, 3, 0, 65552, 3, 0, 65553, 4, 0, 196607, 4, 0, 131072, 3, 0, 131073, 3, 0, 131074, 3, 0, 131075, 3, 0, 131076, 3, 0, 131077, 3, 0, 131078, 3, 0, 131079, 3, 0, 131080, 3, 0, 131081, 3, 0, 131082, 3, 0, 131083, 3, 0, 131084, 3, 0, 131085, 3, 0, 131086, 3, 0, 131087, 3, 0, 131088, 3, 0, 131089, 4, 0, 262143, 4, 0, 196608, 3, 0, 196609, 3, 0, 196610, 3, 0, 196611, 3, 0, 196612, 3, 0, 196613, 3, 0, 196614, 3, 0, 196615, 3, 0, 196616, 3, 0, 196617, 3, 0, 196618, 3, 0, 196619, 3, 0, 196620, 3, 0, 196621, 3, 0, 196622, 3, 0, 196623, 3, 0, 196624, 3, 0, 196625, 4, 0, 327679, 4, 0, 262144, 1, 0, 262145, 1, 0, 262146, 1, 0, 262147, 1, 0, 262148, 1, 0, 262149, 1, 0, 262150, 1, 0, 262151, 1, 0, 262152, 1, 0, 262153, 1, 0, 262154, 1, 0, 262155, 1, 0, 262156, 1, 0, 262157, 1, 0, 262158, 1, 0, 262159, 1, 0, 262160, 1, 0, 262161, 4, 0, 393215, 4, 0, 327680, 1, 0, 327681, 1, 0, 327682, 1, 0, 327683, 1, 0, 327684, 1, 0, 327685, 1, 0, 327686, 1, 0, 327687, 1, 0, 327688, 1, 0, 327689, 1, 0, 327690, 1, 0, 327691, 1, 0, 327692, 1, 0, 327693, 1, 0, 327694, 1, 0, 327695, 1, 0, 327696, 1, 0, 327697, 4, 0, 458751, 4, 0, 393216, 1, 0, 393217, 1, 0, 393218, 1, 0, 393219, 1, 0, 393220, 1, 0, 393221, 1, 0, 393222, 1, 0, 393223, 1, 0, 393224, 1, 0, 393225, 1, 0, 393226, 1, 0, 393227, 1, 0, 393228, 1, 0, 393229, 1, 0, 393230, 1, 0, 393231, 1, 0, 393232, 1, 0, 393233, 3, 0, 524287, 3, 0, 458752, 1, 0, 458753, 1, 0, 458754, 1, 0, 458755, 1, 0, 458756, 1, 0, 458757, 1, 0, 458758, 1, 0, 458759, 1, 0, 458760, 1, 0, 458761, 1, 0, 458762, 1, 0, 458763, 1, 0, 458764, 1, 0, 458765, 1, 0, 458766, 1, 0, 458767, 1, 0, 458768, 1, 0, 458769, 3, 0, 589823, 3, 0, 524288, 1, 0, 524289, 1, 0, 524290, 1, 0, 524291, 1, 0, 524292, 1, 0, 524293, 1, 0, 524294, 1, 0, 524295, 1, 0, 524296, 1, 0, 524297, 1, 0, 524298, 1, 0, 524299, 1, 0, 524300, 1, 0, 524301, 1, 0, 524302, 1, 0, 524303, 1, 0, 524304, 1, 0, 524305, 1, 0, 655359, 3, 0, 589824, 1, 0, 589825, 1, 0, 589826, 1, 0, 589827, 1, 0, 589828, 1, 0, 589829, 1, 0, 589830, 1, 0, 589831, 1, 0, 589832, 1, 0, 589833, 1, 0, 589834, 1, 0, 589835, 1, 0, 589836, 1, 0, 589837, 1, 0, 589838, 1, 0, 589839, 1, 0, 589840, 1, 0, 589841, 1, 0 )
-
-[node name="Player" type="KinematicBody2D" parent="."]
-collision_mask = 2
-script = ExtResource( 15 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
-position = Vector2( 140.489, 223.129 )
-shape = SubResource( 8 )
-
-[node name="AnimatedSprite" type="AnimatedSprite" parent="Player"]
-position = Vector2( 141.029, 223.197 )
-scale = Vector2( 0.32216, 0.333458 )
-frames = SubResource( 3 )
-animation = "left_right"
-
-[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Player"]
-remote_path = NodePath("../../Player Camera")
-
-[node name="Camera2D" type="Camera2D" parent="Player"]
-anchor_mode = 0
-current = true
-zoom = Vector2( 0.593, 0.585 )
-limit_left = -30
-limit_top = -30
-limit_right = 575
-limit_bottom = 320
-editor_draw_limits = true
+tile_data = PoolIntArray( -1, 4, 0, -65536, 4, 0, -65535, 4, 0, -65534, 4, 0, -65533, 4, 0, -65532, 4, 0, -65531, 4, 0, -65530, 4, 0, -65529, 4, 0, -65528, 4, 0, -65527, 4, 0, -65526, 4, 0, -65525, 4, 0, -65524, 4, 0, -65523, 4, 0, -65522, 4, 0, -65521, 4, 0, -65520, 4, 0, -65519, 4, 0, 65535, 4, 0, 0, 1, 0, 1, 1, 0, 2, 1, 0, 3, 1, 0, 4, 1, 0, 5, 1, 0, 6, 1, 0, 7, 1, 0, 8, 1, 0, 9, 1, 0, 10, 1, 0, 11, 1, 0, 12, 1, 0, 13, 1, 0, 14, 1, 0, 15, 1, 0, 16, 1, 0, 17, 4, 0, 131071, 4, 0, 65536, 1, 0, 65537, 1, 0, 65538, 1, 0, 65539, 1, 0, 65540, 1, 0, 65541, 1, 0, 65542, 1, 0, 65543, 1, 0, 65544, 1, 0, 65545, 1, 0, 65546, 1, 0, 65547, 1, 0, 65548, 1, 0, 65549, 1, 0, 65550, 1, 0, 65551, 1, 0, 65552, 1, 0, 65553, 4, 0, 196607, 4, 0, 131072, 1, 0, 131073, 1, 0, 131074, 1, 0, 131075, 1, 0, 131076, 1, 0, 131077, 1, 0, 131078, 1, 0, 131079, 1, 0, 131080, 1, 0, 131081, 1, 0, 131082, 1, 0, 131083, 1, 0, 131084, 1, 0, 131085, 1, 0, 131086, 1, 0, 131087, 1, 0, 131088, 1, 0, 131089, 4, 0, 262143, 4, 0, 196608, 1, 0, 196609, 1, 0, 196610, 1, 0, 196611, 1, 0, 196612, 1, 0, 196613, 1, 0, 196614, 1, 0, 196615, 1, 0, 196616, 1, 0, 196617, 1, 0, 196618, 1, 0, 196619, 1, 0, 196620, 1, 0, 196621, 1, 0, 196622, 1, 0, 196623, 1, 0, 196624, 1, 0, 196625, 4, 0, 327679, 4, 0, 262144, 3, 0, 262145, 3, 0, 262146, 3, 0, 262147, 3, 0, 262148, 3, 0, 262149, 3, 0, 262150, 3, 0, 262151, 3, 0, 262152, 3, 0, 262153, 3, 0, 262154, 3, 0, 262155, 3, 0, 262156, 3, 0, 262157, 3, 0, 262158, 3, 0, 262159, 3, 0, 262160, 3, 0, 262161, 4, 0, 393215, 4, 0, 327680, 3, 0, 327681, 3, 0, 327682, 3, 0, 327683, 3, 0, 327684, 3, 0, 327685, 3, 0, 327686, 3, 0, 327687, 3, 0, 327688, 3, 0, 327689, 3, 0, 327690, 3, 0, 327691, 3, 0, 327692, 3, 0, 327693, 3, 0, 327694, 3, 0, 327695, 3, 0, 327696, 3, 0, 327697, 4, 0, 458751, 4, 0, 393216, 3, 0, 393217, 3, 0, 393218, 3, 0, 393219, 3, 0, 393220, 3, 0, 393221, 3, 0, 393222, 3, 0, 393223, 3, 0, 393224, 3, 0, 393225, 3, 0, 393226, 3, 0, 393227, 3, 0, 393228, 3, 0, 393229, 3, 0, 393230, 3, 0, 393231, 3, 0, 393232, 3, 0, 393233, 1, 0, 524287, 1, 0, 458752, 3, 0, 458753, 3, 0, 458754, 3, 0, 458755, 3, 0, 458756, 3, 0, 458757, 3, 0, 458758, 3, 0, 458759, 3, 0, 458760, 3, 0, 458761, 3, 0, 458762, 3, 0, 458763, 3, 0, 458764, 3, 0, 458765, 3, 0, 458766, 3, 0, 458767, 3, 0, 458768, 3, 0, 458769, 1, 0, 589823, 1, 0, 524288, 3, 0, 524289, 3, 0, 524290, 3, 0, 524291, 3, 0, 524292, 3, 0, 524293, 3, 0, 524294, 3, 0, 524295, 3, 0, 524296, 3, 0, 524297, 3, 0, 524298, 3, 0, 524299, 3, 0, 524300, 3, 0, 524301, 3, 0, 524302, 3, 0, 524303, 3, 0, 524304, 3, 0, 524305, 3, 0, 655359, 1, 0, 589824, 3, 0, 589825, 3, 0, 589826, 3, 0, 589827, 3, 0, 589828, 3, 0, 589829, 3, 0, 589830, 3, 0, 589831, 3, 0, 589832, 3, 0, 589833, 3, 0, 589834, 3, 0, 589835, 3, 0, 589836, 3, 0, 589837, 3, 0, 589838, 3, 0, 589839, 3, 0, 589840, 3, 0, 589841, 3, 0 )
 
 [node name="Walls" type="StaticBody2D" parent="."]
 position = Vector2( -13.3039, 5.7677 )
 collision_layer = 2
 
 [node name="Wall 1" type="CollisionShape2D" parent="Walls"]
-position = Vector2( 281.888, 332.757 )
-shape = SubResource( 9 )
+position = Vector2( 280.242, 332.757 )
+shape = SubResource( 2 )
 
 [node name="Wall 2" type="CollisionShape2D" parent="Walls"]
 position = Vector2( 587.848, 67.5149 )
-shape = SubResource( 5 )
+shape = SubResource( 3 )
 
 [node name="Wall 3" type="CollisionShape2D" parent="Walls"]
-position = Vector2( 264.081, 14.5893 )
-shape = SubResource( 6 )
+position = Vector2( 269.02, 26.1134 )
+shape = SubResource( 4 )
 
 [node name="Wall 4" type="CollisionShape2D" parent="Walls"]
 position = Vector2( -11.7405, 141.777 )
-shape = SubResource( 7 )
+shape = SubResource( 5 )
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+color = Color( 0.117647, 0.117647, 0.117647, 1 )
+
+[node name="Light2D" type="Light2D" parent="."]
+position = Vector2( 274.931, 144.051 )
+scale = Vector2( 19.0064, 11.135 )
+texture = ExtResource( 6 )
+
+[node name="Sprite" type="Sprite" parent="Light2D"]
+
+[node name="Area2D" type="Area2D" parent="."]
+script = ExtResource( 7 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2( 583.211, 249.002 )
+shape = SubResource( 6 )
+
+[node name="Player" parent="." instance=ExtResource( 9 )]
+position = Vector2( -105.381, -28.8949 )
+
+[connection signal="body_entered" from="Area2D" to="Area2D" method="_on_Area2D_body_entered"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
+[connection signal="body_exited" from="Area2D" to="Area2D" method="_on_Area2D_body_exited"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_Area2D_body_exited"]

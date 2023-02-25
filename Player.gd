@@ -5,6 +5,9 @@ var _animated_sprite
 var last_action_pressed 
 export var speed = 100
 
+func _ready():
+	pass
+
 func get_input():
 	velocity = Vector2()
 	if Input.is_action_pressed("ui_right"):
