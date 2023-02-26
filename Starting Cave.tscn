@@ -6,7 +6,7 @@
 [ext_resource path="res://Resources/Sprites/prismarinestone8wide.png" type="Texture" id=4]
 [ext_resource path="res://Resources/Sprites/Tiles/plain/_walltop4.png" type="Texture" id=5]
 [ext_resource path="res://pixil-frame-0 (25).png" type="Texture" id=6]
-[ext_resource path="res://Area2D1.gd" type="Script" id=7]
+[ext_resource path="res://SceneChangeTrigger.gd" type="Script" id=7]
 [ext_resource path="res://World.gd" type="Script" id=8]
 [ext_resource path="res://Player.tscn" type="PackedScene" id=9]
 
@@ -95,7 +95,7 @@ extents = Vector2( 331.463, 24.0997 )
 extents = Vector2( 24.3621, 197.497 )
 
 [sub_resource type="RectangleShape2D" id=6]
-extents = Vector2( 10, 73.3358 )
+extents = Vector2( 15.5, 73.3358 )
 
 [node name="Starting Cave" type="Node2D"]
 script = ExtResource( 8 )
@@ -136,17 +136,20 @@ texture = ExtResource( 6 )
 
 [node name="Sprite" type="Sprite" parent="Light2D"]
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="SceneTrigger" type="Area2D" parent="."]
 script = ExtResource( 7 )
+nextScene = "Sea Cave 1.tscn"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2( 583.211, 249.002 )
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SceneTrigger"]
+position = Vector2( 558.5, 246 )
 shape = SubResource( 6 )
 
 [node name="Player" parent="." instance=ExtResource( 9 )]
 position = Vector2( -105.381, -28.8949 )
 
-[connection signal="body_entered" from="Area2D" to="Area2D" method="_on_Area2D_body_entered"]
-[connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
-[connection signal="body_exited" from="Area2D" to="Area2D" method="_on_Area2D_body_exited"]
-[connection signal="body_exited" from="Area2D" to="." method="_on_Area2D_body_exited"]
+[connection signal="area_entered" from="SceneTrigger" to="Player" method="_on_SceneTrigger_area_entered"]
+[connection signal="body_entered" from="SceneTrigger" to="." method="_on_Area2D_body_entered"]
+[connection signal="body_entered" from="SceneTrigger" to="." method="_on_SceneTrigger_body_entered"]
+[connection signal="body_entered" from="SceneTrigger" to="SceneTrigger" method="_on_SceneTrigger_body_entered"]
+[connection signal="body_entered" from="SceneTrigger" to="Player" method="_on_NewSceneArea_body_entered"]
+[connection signal="body_exited" from="SceneTrigger" to="." method="_on_Area2D_body_exited"]

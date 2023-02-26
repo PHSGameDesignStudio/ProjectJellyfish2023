@@ -103,7 +103,7 @@ shape = SubResource( 2 )
 [node name="Player" parent="." instance=ExtResource( 8 )]
 position = Vector2( -99.558, 327.813 )
 
-[connection signal="body_entered" from="To Starting Cave" to="To Starting Cave" method="_on_To_Starting_Cave_body_entered"]
 [connection signal="body_entered" from="To Starting Cave" to="." method="_on_To_Starting_Cave_body_entered"]
-[connection signal="body_exited" from="To Starting Cave" to="To Starting Cave" method="_on_To_Starting_Cave_body_exited"]
+[connection signal="body_entered" from="To Starting Cave" to="To Starting Cave" method="_on_To_Starting_Cave_body_entered"]
 [connection signal="body_exited" from="To Starting Cave" to="." method="_on_To_Starting_Cave_body_exited"]
+[connection signal="body_exited" from="To Starting Cave" to="To Starting Cave" method="_on_To_Starting_Cave_body_exited"]

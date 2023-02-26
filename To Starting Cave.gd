@@ -8,5 +8,6 @@ func _on_To_Starting_Cave_body_exited(body):
 	entered = false
 
 func _process(delta):
-	if entered == true:
-		get_tree().change_scene("res://Starting Cave.tscn")
+	pass
+	#if entered == true:
+		#get_tree().change_scene("res://Starting Cave.tscn")

@@ -1,7 +1,7 @@
 extends KinematicBody2D
 
-var velocity
-var _animated_sprite
+var velocity = Vector2.ZERO
+onready var _animated_sprite =  $AnimatedSprite
 var last_action_pressed 
 export var speed = 100
 
@@ -51,3 +51,13 @@ func _physics_process(_delta):
 	get_input()
 	move_and_slide(velocity)
 	
+func _on_NewSceneArea_body_entered(body):
+	if ("nextScene" in body):
+		get_tree().change_scene(body.nextScene)
+	#if (body.name == "SceneTrigger"):
+		
+
+
+func _on_SceneTrigger_area_entered(area):
+	if ("nextScene" in area):
+		get_tree().change_scene(area.nextScene)

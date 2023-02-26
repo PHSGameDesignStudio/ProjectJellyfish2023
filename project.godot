@@ -16,8 +16,6 @@ config/icon="res://icon.png"
 
 [autoload]
 
-StartingCave="*res://Starting Cave.tscn"
-Player="*res://Player.tscn"
 ProjectJellyfish="*res://Project Jellyfish.gd"
 
 [gui]
