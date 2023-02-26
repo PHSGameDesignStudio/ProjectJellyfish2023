@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://Resources/Sprites/prismarine.png" type="Texture" id=1]
 [ext_resource path="res://Resources/Sprites/prismarinestone3wide.png" type="Texture" id=2]
@@ -9,6 +9,8 @@
 [ext_resource path="res://SceneChangeTrigger.gd" type="Script" id=7]
 [ext_resource path="res://World.gd" type="Script" id=8]
 [ext_resource path="res://Player.tscn" type="PackedScene" id=9]
+[ext_resource path="res://lightgame.png" type="Texture" id=10]
+[ext_resource path="res://bleachedcoralweapon.png" type="Texture" id=11]
 
 [sub_resource type="TileSet" id=1]
 0/name = "prismarine.png 0"
@@ -86,7 +88,7 @@
 extents = Vector2( 348.708, 26.4418 )
 
 [sub_resource type="RectangleShape2D" id=3]
-extents = Vector2( 28.7431, 104.827 )
+extents = Vector2( 28.7431, 120.443 )
 
 [sub_resource type="RectangleShape2D" id=4]
 extents = Vector2( 331.463, 24.0997 )
@@ -95,12 +97,13 @@ extents = Vector2( 331.463, 24.0997 )
 extents = Vector2( 24.3621, 197.497 )
 
 [sub_resource type="RectangleShape2D" id=6]
-extents = Vector2( 15.5, 73.3358 )
+extents = Vector2( 8.17804, 36.3843 )
 
 [node name="Starting Cave" type="Node2D"]
 script = ExtResource( 8 )
+world_name = "Starting Cave"
 
-[node name="TileMap" type="TileMap" parent="."]
+[node name="TileMapStartingCave" type="TileMap" parent="."]
 tile_set = SubResource( 1 )
 cell_size = Vector2( 32, 32 )
 format = 1
@@ -141,15 +144,26 @@ script = ExtResource( 7 )
 nextScene = "Sea Cave 1.tscn"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SceneTrigger"]
-position = Vector2( 558.5, 246 )
+position = Vector2( 573.805, 274.909 )
 shape = SubResource( 6 )
 
 [node name="Player" parent="." instance=ExtResource( 9 )]
-position = Vector2( -105.381, -28.8949 )
+position = Vector2( -28.8945, -3.39936 )
+
+[node name="Light2D2" type="Light2D" parent="."]
+position = Vector2( 264.109, 216.28 )
+scale = Vector2( 0.0699869, 0.0699869 )
+texture = ExtResource( 10 )
+color = Color( 0.443137, 0.443137, 0.443137, 1 )
+
+[node name="Bleached Coral weapon" type="Sprite" parent="Light2D2"]
+position = Vector2( -51.271, 5.6853 )
+scale = Vector2( 7.38074, 7.43388 )
+texture = ExtResource( 11 )
 
 [connection signal="area_entered" from="SceneTrigger" to="Player" method="_on_SceneTrigger_area_entered"]
-[connection signal="body_entered" from="SceneTrigger" to="." method="_on_Area2D_body_entered"]
 [connection signal="body_entered" from="SceneTrigger" to="." method="_on_SceneTrigger_body_entered"]
-[connection signal="body_entered" from="SceneTrigger" to="SceneTrigger" method="_on_SceneTrigger_body_entered"]
 [connection signal="body_entered" from="SceneTrigger" to="Player" method="_on_NewSceneArea_body_entered"]
+[connection signal="body_entered" from="SceneTrigger" to="SceneTrigger" method="_on_SceneTrigger_body_entered"]
 [connection signal="body_exited" from="SceneTrigger" to="." method="_on_Area2D_body_exited"]
+[connection signal="body_exited" from="SceneTrigger" to="SceneTrigger" method="_on_SceneTrigger_body_exited"]

@@ -21,21 +21,6 @@ animations = [ {
 "name": "backward",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 7 ), ExtResource( 1 ) ],
-"loop": true,
-"name": "forward",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 9 ) ],
-"loop": true,
-"name": "idle backward",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 6 ) ],
-"loop": true,
-"name": "idle forward",
-"speed": 5.0
-}, {
 "frames": [ ExtResource( 8 ) ],
 "loop": true,
 "name": "idle left_right",
@@ -45,6 +30,21 @@ animations = [ {
 "loop": true,
 "name": "left_right",
 "speed": 5.0
+}, {
+"frames": [ ExtResource( 9 ) ],
+"loop": true,
+"name": "idle backward",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 7 ), ExtResource( 1 ) ],
+"loop": true,
+"name": "forward",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 6 ) ],
+"loop": true,
+"name": "idle forward",
+"speed": 5.0
 } ]
 
 [node name="Player" type="KinematicBody2D"]
@@ -52,11 +52,11 @@ collision_mask = 2
 script = ExtResource( 10 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( 140.489, 223.129 )
+position = Vector2( 33.6639, 169.716 )
 shape = SubResource( 1 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
-position = Vector2( 141.029, 223.197 )
+position = Vector2( 34.2039, 171.839 )
 scale = Vector2( 0.32216, 0.333458 )
 frames = SubResource( 2 )
 animation = "left_right"
@@ -65,10 +65,11 @@ animation = "left_right"
 remote_path = NodePath("..")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-anchor_mode = 0
 current = true
-zoom = Vector2( 0.592, 0.575 )
-limit_smoothed = true
+limit_left = 0
+limit_top = 0
+limit_right = 500
+limit_bottom = 500
 smoothing_enabled = true
 drag_margin_left = 0.0
 drag_margin_top = 0.0

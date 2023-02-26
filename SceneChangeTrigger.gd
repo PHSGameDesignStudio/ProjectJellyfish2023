@@ -12,3 +12,8 @@ func _process(delta):
 func _on_SceneTrigger_body_entered(body):
 	if (body.name == "Player"):
 		get_tree().change_scene(nextScene)
+
+
+func _on_SceneTrigger_body_exited(body):
+	if (body.name == "Player"):
+		get_tree().change_scene(nextScene)
