@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://Resources/Sprites/Tiles/plain/_walltop4.png" type="Texture" id=1]
 [ext_resource path="res://Resources/Sprites/prismarinestone8wide.png" type="Texture" id=2]
@@ -82,12 +82,22 @@
 4/z_index = 0
 
 [sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 34.3457, 73.5699 )
+extents = Vector2( 25.0244, 52.3962 )
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 607.614, 10 )
+
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 17.5504, 341.446 )
+
+[sub_resource type="RectangleShape2D" id=5]
+extents = Vector2( 726.598, 18.4897 )
 
 [node name="Sea Cave 1" type="Node2D"]
 script = ExtResource( 7 )
+world_name = "Sea Cave 1"
 
-[node name="TileMap" type="TileMap" parent="."]
+[node name="SeaCave1TileMap" type="TileMap" parent="."]
 tile_set = SubResource( 1 )
 cell_size = Vector2( 32, 32 )
 format = 1
@@ -98,14 +108,30 @@ script = ExtResource( 6 )
 nextScene = "Starting Cave.tscn"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SceneTrigger"]
-position = Vector2( -19.6152, 534.125 )
+position = Vector2( -19.6152, 543.838 )
 shape = SubResource( 2 )
 
 [node name="Player" parent="." instance=ExtResource( 8 )]
-position = Vector2( -99.558, 327.813 )
+position = Vector2( 7.28477, 383.663 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2( 604.633, 138.41 )
+shape = SubResource( 3 )
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2( 12.1412, 106.843 )
+shape = SubResource( 4 )
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2( 723.617, 619.203 )
+shape = SubResource( 5 )
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="StaticBody2D"]
 
 [connection signal="body_entered" from="SceneTrigger" to="." method="_on_To_Starting_Cave_body_entered"]
-[connection signal="body_entered" from="SceneTrigger" to="SceneTrigger" method="_on_To_Starting_Cave_body_entered"]
 [connection signal="body_entered" from="SceneTrigger" to="SceneTrigger" method="_on_SceneTrigger_body_entered"]
+[connection signal="body_entered" from="SceneTrigger" to="SceneTrigger" method="_on_To_Starting_Cave_body_entered"]
 [connection signal="body_exited" from="SceneTrigger" to="." method="_on_To_Starting_Cave_body_exited"]
 [connection signal="body_exited" from="SceneTrigger" to="SceneTrigger" method="_on_To_Starting_Cave_body_exited"]

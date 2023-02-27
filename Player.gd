@@ -5,6 +5,7 @@ onready var _animated_sprite =  $AnimatedSprite
 var last_action_pressed 
 export var speed = 100
 
+
 func _ready():
 	pass
 
