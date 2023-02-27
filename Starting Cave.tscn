@@ -163,6 +163,8 @@ texture = ExtResource( 11 )
 
 [connection signal="area_entered" from="SceneTrigger" to="Player" method="_on_SceneTrigger_area_entered"]
 [connection signal="body_entered" from="SceneTrigger" to="." method="_on_SceneTrigger_body_entered"]
+[connection signal="body_entered" from="SceneTrigger" to="." method="_on_Area2D_body_entered"]
+[connection signal="body_entered" from="SceneTrigger" to="Player" method="_on_NewSceneArea_body_entered"]
 [connection signal="body_entered" from="SceneTrigger" to="SceneTrigger" method="_on_SceneTrigger_body_entered"]
 [connection signal="body_entered" from="SceneTrigger" to="Player" method="_on_NewSceneArea_body_entered"]
 [connection signal="body_exited" from="SceneTrigger" to="." method="_on_Area2D_body_exited"]
