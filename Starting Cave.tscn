@@ -5,7 +5,7 @@
 [ext_resource path="res://Resources/Sprites/sand.png" type="Texture" id=3]
 [ext_resource path="res://Resources/Sprites/prismarinestone8wide.png" type="Texture" id=4]
 [ext_resource path="res://Resources/Sprites/Tiles/plain/_walltop4.png" type="Texture" id=5]
-[ext_resource path="res://pixil-frame-0 (25).png" type="Texture" id=6]
+[ext_resource path="res://pixil-frame-0 (27).png" type="Texture" id=6]
 [ext_resource path="res://SceneChangeTrigger.gd" type="Script" id=7]
 [ext_resource path="res://World.gd" type="Script" id=8]
 [ext_resource path="res://Player.tscn" type="PackedScene" id=9]
@@ -130,11 +130,11 @@ position = Vector2( -11.7405, 141.777 )
 shape = SubResource( 5 )
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
-color = Color( 0.117647, 0.117647, 0.117647, 1 )
+color = Color( 0.0470588, 0.0431373, 0.0431373, 1 )
 
 [node name="Light2D" type="Light2D" parent="."]
-position = Vector2( 274.931, 144.051 )
-scale = Vector2( 19.0064, 11.135 )
+position = Vector2( 344.671, 183.105 )
+scale = Vector2( 23.3651, 13.5759 )
 texture = ExtResource( 6 )
 
 [node name="Sprite" type="Sprite" parent="Light2D"]
@@ -161,9 +161,5 @@ position = Vector2( -51.271, 5.6853 )
 scale = Vector2( 7.38074, 7.43388 )
 texture = ExtResource( 11 )
 
-[connection signal="area_entered" from="SceneTrigger" to="Player" method="_on_SceneTrigger_area_entered"]
 [connection signal="body_entered" from="SceneTrigger" to="." method="_on_SceneTrigger_body_entered"]
-[connection signal="body_entered" from="SceneTrigger" to="Player" method="_on_NewSceneArea_body_entered"]
 [connection signal="body_entered" from="SceneTrigger" to="SceneTrigger" method="_on_SceneTrigger_body_entered"]
-[connection signal="body_exited" from="SceneTrigger" to="." method="_on_Area2D_body_exited"]
-[connection signal="body_exited" from="SceneTrigger" to="SceneTrigger" method="_on_SceneTrigger_body_exited"]

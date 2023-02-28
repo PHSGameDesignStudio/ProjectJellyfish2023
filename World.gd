@@ -1,10 +1,9 @@
 extends Node2D
 
-signal world_changed(world_name)
 var entered = false
-
+signal scene_change
 export (String) var world_name = "World"
-
+onready var scene_change = get_node("Project Jellyfish/AnimationPlayer")
 
 func _ready():
 	var cam = get_node("Player/Camera2D")
@@ -26,19 +25,12 @@ func _ready():
 		cam.limit_top = map_limits.position.y * map_cellsize.y
 		cam.limit_right = map_limits.end.x * map_cellsize.x
 		cam.limit_bottom = map_limits.end.y * map_cellsize.y
-#func _process(delta):
-	#if entered:
-		
-		#emit_signal("world_changed", world_name)
-#
-#func _on_Area2D_body_entered(body):
-#	if (body.name == "NewSceneArea"):
-#		get_tree().change_scene("res://Sea Cave 1.tscn")
-#		entered = true
-#func _on_Area2D_body_exited(body):
-#	if (body.name == "NewSceneArea"):
-#		entered = false
 
 
-func _on_SceneTrigger_body_entered(body):
-	pass # Replace with function body.
+func _on_SceneTrigger_body_entered(body: PhysicsBody2D):
+	emit_signal("scene_change")
+
+
+func _on_Sea_Cave_1_scene_change():
+	pass
+	

@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Starting Cave.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Sea Cave 1.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scene_changed.gd" type="Script" id=3]
+[ext_resource path="res://TransitionAnimationPlayer.gd" type="Script" id=4]
 
 [sub_resource type="Animation" id=1]
 resource_name = "fade_in"
@@ -57,5 +58,4 @@ __meta__ = {
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/fade_in = SubResource( 1 )
 anims/fade_out = SubResource( 2 )
-
-[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
+script = ExtResource( 4 )

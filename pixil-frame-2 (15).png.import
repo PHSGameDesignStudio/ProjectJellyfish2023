@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/pixil-frame-0 (25).png-80d91848927c12b448ffd617be61988b.stex"
+path="res://.import/pixil-frame-2 (15).png-278e50d792dc3f9a4bced06f0ae6c09a.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://pixil-frame-0 (25).png"
-dest_files=[ "res://.import/pixil-frame-0 (25).png-80d91848927c12b448ffd617be61988b.stex" ]
+source_file="res://pixil-frame-2 (15).png"
+dest_files=[ "res://.import/pixil-frame-2 (15).png-278e50d792dc3f9a4bced06f0ae6c09a.stex" ]
 
 [params]
 
@@ -28,7 +28,6 @@ process/fix_alpha_border=true
 process/premult_alpha=false
 process/HDR_as_SRGB=false
 process/invert_color=false
-process/normal_map_invert_y=false
 stream=false
 size_limit=0
 detect_3d=true

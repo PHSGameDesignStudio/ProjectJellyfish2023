@@ -55,8 +55,7 @@ func _physics_process(_delta):
 func _on_NewSceneArea_body_entered(body):
 	if ("nextScene" in body):
 		get_tree().change_scene(body.nextScene)
-	#if (body.name == "SceneTrigger"):
-		
+	
 
 
 func _on_SceneTrigger_area_entered(area):
