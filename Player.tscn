@@ -21,14 +21,9 @@ animations = [ {
 "name": "backward",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 8 ) ],
+"frames": [ ExtResource( 7 ), ExtResource( 1 ) ],
 "loop": true,
-"name": "idle left_right",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 5 ), ExtResource( 8 ), ExtResource( 2 ) ],
-"loop": true,
-"name": "left_right",
+"name": "forward",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 9 ) ],
@@ -36,14 +31,19 @@ animations = [ {
 "name": "idle backward",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 7 ), ExtResource( 1 ) ],
-"loop": true,
-"name": "forward",
-"speed": 5.0
-}, {
 "frames": [ ExtResource( 6 ) ],
 "loop": true,
 "name": "idle forward",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 8 ) ],
+"loop": true,
+"name": "idle right",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 5 ), ExtResource( 8 ), ExtResource( 2 ) ],
+"loop": true,
+"name": "right",
 "speed": 5.0
 } ]
 
@@ -59,7 +59,7 @@ shape = SubResource( 1 )
 position = Vector2( 34.2039, 171.839 )
 scale = Vector2( 0.32216, 0.333458 )
 frames = SubResource( 2 )
-animation = "left_right"
+animation = "right"
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="."]
 remote_path = NodePath("..")
