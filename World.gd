@@ -28,7 +28,7 @@ func _ready():
 
 
 func _on_SceneTrigger_body_entered(body: PhysicsBody2D):
-	emit_signal("scene_change")
+	pass
 
 
 func _on_Sea_Cave_1_scene_change():

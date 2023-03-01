@@ -1,6 +1,6 @@
 extends Area2D
 
-var entered = false
+
 export var nextScene = "";
 func _process(delta):
 	pass
@@ -12,4 +12,7 @@ func _process(delta):
 func _on_SceneTrigger_body_entered(body):
 	if (body.name == "Player"):
 		get_tree().change_scene(nextScene)
+		var scene_transition = $"../AnimationPlayer"
+		scene_transition.play("fade_in")
+		scene_transition.play("fade_out")
 
