@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://Resources/Sprites/prismarine.png" type="Texture" id=1]
 [ext_resource path="res://Resources/Sprites/prismarinestone3wide.png" type="Texture" id=2]
@@ -99,6 +99,49 @@ extents = Vector2( 24.3621, 197.497 )
 [sub_resource type="RectangleShape2D" id=6]
 extents = Vector2( 8.17804, 36.3843 )
 
+[sub_resource type="Animation" id=7]
+resource_name = "DefaultInvisible"
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("CanvasLayer/ColorRect:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+
+[sub_resource type="Animation" id=8]
+resource_name = "SceneChangeFade"
+tracks/0/type = "value"
+tracks/0/path = NodePath("CanvasLayer/ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.4, 0.6, 1 ),
+"transitions": PoolRealArray( 0.42, 1, 1, 0.42 ),
+"update": 0,
+"values": [ Color( 0, 0, 0, 0 ), Color( 0, 0, 0, 1 ), Color( 0, 0, 0, 1 ), Color( 0, 0, 0, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("CanvasLayer/ColorRect:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+
 [node name="Starting Cave" type="Node2D"]
 script = ExtResource( 8 )
 world_name = "Starting Cave"
@@ -147,6 +190,18 @@ nextScene = "Sea Cave 1.tscn"
 position = Vector2( 573.805, 274.909 )
 shape = SubResource( 6 )
 
+[node name="SceneChangePlayer" type="AnimationPlayer" parent="SceneTrigger"]
+autoplay = "DefaultInvisible"
+anims/DefaultInvisible = SubResource( 7 )
+anims/SceneChangeFade = SubResource( 8 )
+
+[node name="CanvasLayer" type="CanvasLayer" parent="SceneTrigger"]
+
+[node name="ColorRect" type="ColorRect" parent="SceneTrigger/CanvasLayer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 0 )
+
 [node name="Player" parent="." instance=ExtResource( 9 )]
 position = Vector2( -28.8945, -3.39936 )
 
@@ -162,9 +217,8 @@ scale = Vector2( 7.38074, 7.43388 )
 texture = ExtResource( 11 )
 
 [connection signal="area_entered" from="SceneTrigger" to="Player" method="_on_SceneTrigger_area_entered"]
-[connection signal="body_entered" from="SceneTrigger" to="." method="_on_SceneTrigger_body_entered"]
 [connection signal="body_entered" from="SceneTrigger" to="." method="_on_Area2D_body_entered"]
-[connection signal="body_entered" from="SceneTrigger" to="Player" method="_on_NewSceneArea_body_entered"]
+[connection signal="body_entered" from="SceneTrigger" to="." method="_on_SceneTrigger_body_entered"]
 [connection signal="body_entered" from="SceneTrigger" to="SceneTrigger" method="_on_SceneTrigger_body_entered"]
 [connection signal="body_entered" from="SceneTrigger" to="Player" method="_on_NewSceneArea_body_entered"]
 [connection signal="body_exited" from="SceneTrigger" to="." method="_on_Area2D_body_exited"]
