@@ -5,7 +5,7 @@ var velocity = Vector2.ZERO
 onready var _animated_sprite =  $AnimatedSprite
 export var speed = 100
 
-var _movement = Move.DOWN_IDLE
+var _movement = Move.RIGHT_IDLE
 
 enum Move {
 	LEFT, LEFT_IDLE, RIGHT, RIGHT_IDLE, DOWN, DOWN_IDLE, UP, UP_IDLE,
@@ -70,7 +70,3 @@ func _on_NewSceneArea_body_entered(body):
 	if ("nextScene" in body):
 		get_tree().change_scene(body.nextScene)
 	
-
-func _on_SceneTrigger_area_entered(area):
-	if ("nextScene" in area):
-		get_tree().change_scene(area.nextScene)

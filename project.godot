@@ -26,6 +26,7 @@ config/icon="res://icon.png"
 
 [autoload]
 
+GlobalWorld="*res://World.gd"
 ProjectJellyfish="*res://Project Jellyfish.gd"
 
 [gui]

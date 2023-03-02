@@ -1,9 +1,7 @@
 extends Node2D
 
-var entered = false
-signal scene_change
+
 export (String) var world_name = "World"
-onready var scene_change = get_node("Project Jellyfish/AnimationPlayer")
 
 func _ready():
 	var cam = get_node("Player/Camera2D")
