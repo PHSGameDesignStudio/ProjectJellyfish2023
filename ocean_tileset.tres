@@ -1,7 +1,7 @@
 [gd_resource type="TileSet" load_steps=6 format=2]
 
 [ext_resource path="res://Resources/Sprites/prismarine.png" type="Texture" id=1]
-[ext_resource path="res://Resources/Sprites/sand.png" type="Texture" id=2]
+[ext_resource path="res://Resources/Sprites/Tiles/plain/sand.png" type="Texture" id=2]
 [ext_resource path="res://Resources/Sprites/prismarinestone3wide.png" type="Texture" id=3]
 [ext_resource path="res://Resources/Sprites/prismarinestone8wide.png" type="Texture" id=4]
 [ext_resource path="res://Resources/Sprites/Tiles/plain/_walltop4.png" type="Texture" id=5]

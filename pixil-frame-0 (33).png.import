@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/sand.png-55037a397ce03b5333b8134057a0cbe6.stex"
+path="res://.import/pixil-frame-0 (33).png-13a105138893544149f1822bbf2a8ee9.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Resources/Sprites/sand.png"
-dest_files=[ "res://.import/sand.png-55037a397ce03b5333b8134057a0cbe6.stex" ]
+source_file="res://pixil-frame-0 (33).png"
+dest_files=[ "res://.import/pixil-frame-0 (33).png-13a105138893544149f1822bbf2a8ee9.stex" ]
 
 [params]
 

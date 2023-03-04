@@ -66,7 +66,5 @@ func _physics_process(_delta):
 	velocity *= 150
 	move_and_slide(velocity)
 	
-func _on_NewSceneArea_body_entered(body):
-	if ("nextScene" in body):
-		get_tree().change_scene(body.nextScene)
+
 	
