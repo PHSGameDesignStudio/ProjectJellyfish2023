@@ -16,14 +16,14 @@ extents = Vector2( 17.1214, 42.2923 )
 
 [sub_resource type="SpriteFrames" id=2]
 animations = [ {
+"frames": [ ExtResource( 5 ), ExtResource( 8 ), ExtResource( 2 ) ],
+"loop": true,
+"name": "right",
+"speed": 5.0
+}, {
 "frames": [ ExtResource( 4 ), ExtResource( 3 ) ],
 "loop": true,
 "name": "backward",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 7 ), ExtResource( 1 ) ],
-"loop": true,
-"name": "forward",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 9 ) ],
@@ -41,9 +41,9 @@ animations = [ {
 "name": "idle right",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 5 ), ExtResource( 8 ), ExtResource( 2 ) ],
+"frames": [ ExtResource( 7 ), ExtResource( 1 ) ],
 "loop": true,
-"name": "right",
+"name": "forward",
 "speed": 5.0
 } ]
 
@@ -66,10 +66,6 @@ remote_path = NodePath("..")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 current = true
-limit_left = 0
-limit_top = 0
-limit_right = 500
-limit_bottom = 500
 smoothing_enabled = true
 drag_margin_left = 0.0
 drag_margin_top = 0.0
