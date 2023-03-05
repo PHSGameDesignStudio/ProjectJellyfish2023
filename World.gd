@@ -23,11 +23,12 @@ func _ready():
 		cam.limit_top = map_limits.position.y * map_cellsize.y
 		cam.limit_right = map_limits.end.x * map_cellsize.x
 		cam.limit_bottom = map_limits.end.y * map_cellsize.y
-	elif world_name == "Amon's Cave":
+	elif world_name == "Amons Cave":
+		print ("hi")
 		var map_limits = get_node("TileMapAmon'sCave").get_used_rect()
 		var map_cellsize = get_node("TileMapAmon'sCave").cell_size
-		cam.zoom.x = 0.5
-		cam.zoom.y = 0.575
+		cam.zoom.x = 0.1
+		cam.zoom.y = 0.1
 		cam.limit_left = map_limits.position.x  * map_cellsize.x
 		cam.limit_top = map_limits.position.y * map_cellsize.y
 		cam.limit_right = map_limits.end.x * map_cellsize.x
