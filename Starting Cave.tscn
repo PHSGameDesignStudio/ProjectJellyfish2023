@@ -201,13 +201,9 @@ anims/SceneChangeFade = SubResource( 6 )
 [node name="CanvasLayer" type="CanvasLayer" parent="To Sea Cave 1"]
 
 [node name="ColorRect" type="ColorRect" parent="To Sea Cave 1/CanvasLayer"]
-visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 color = Color( 0, 0, 0, 0 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Walls" type="StaticBody2D" parent="."]
 position = Vector2( -13.3039, 5.7677 )
@@ -254,3 +250,4 @@ scale = Vector2( 7.38074, 7.43388 )
 texture = ExtResource( 11 )
 
 [connection signal="body_entered" from="To Sea Cave 1" to="To Sea Cave 1" method="_on_To_Sea_Cave_1_body_entered"]
+[connection signal="animation_finished" from="To Sea Cave 1/SceneChangePlayer" to="To Sea Cave 1" method="_on_SceneChangePlayer_animation_finished"]
