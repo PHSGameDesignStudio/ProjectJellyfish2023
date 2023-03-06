@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://World.gd" type="Script" id=1]
 [ext_resource path="res://Resources/Sprites/Tiles/plain/_walltop4.png" type="Texture" id=2]
@@ -55,94 +55,19 @@
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 10, 89.7153 )
 
-[sub_resource type="Animation" id=3]
-resource_name = "DefaultInvisible"
-length = 0.001
-tracks/0/type = "value"
-tracks/0/path = NodePath("CanvasLayer/ColorRect:visible")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ false ]
-}
-
-[sub_resource type="Animation" id=4]
-resource_name = "FadeIn"
-length = 0.5
-tracks/0/type = "value"
-tracks/0/path = NodePath("CanvasLayer/ColorRect:color")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.5 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ Color( 0, 0, 0, 0 ), Color( 0, 0, 0, 1 ) ]
-}
-
-[sub_resource type="Animation" id=5]
-resource_name = "FadeOut"
-length = 0.5
-tracks/0/type = "value"
-tracks/0/path = NodePath("CanvasLayer/ColorRect:color")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.5 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ Color( 0, 0, 0, 1 ), Color( 0, 0, 0, 0 ) ]
-}
-
-[sub_resource type="Animation" id=6]
-resource_name = "SceneChangeFade"
-tracks/0/type = "value"
-tracks/0/path = NodePath("CanvasLayer/ColorRect:color")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.4, 0.6, 1 ),
-"transitions": PoolRealArray( 0.42, 1, 1, 0.42 ),
-"update": 0,
-"values": [ Color( 0, 0, 0, 0 ), Color( 0, 0, 0, 1 ), Color( 0, 0, 0, 1 ), Color( 0, 0, 0, 0 ) ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("CanvasLayer/ColorRect:visible")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ true ]
-}
-
-[sub_resource type="RectangleShape2D" id=7]
+[sub_resource type="RectangleShape2D" id=3]
 extents = Vector2( 348.708, 26.4418 )
 
-[sub_resource type="RectangleShape2D" id=8]
+[sub_resource type="RectangleShape2D" id=4]
 extents = Vector2( 28.7431, 120.443 )
 
-[sub_resource type="RectangleShape2D" id=9]
+[sub_resource type="RectangleShape2D" id=5]
 extents = Vector2( 331.463, 24.0997 )
 
-[sub_resource type="RectangleShape2D" id=10]
+[sub_resource type="RectangleShape2D" id=6]
 extents = Vector2( 24.3621, 197.497 )
 
-[node name="Amons Cave" type="Node2D"]
+[node name="Amon\'s Cave" type="Node2D"]
 script = ExtResource( 1 )
 world_name = "Amon's Cave"
 
@@ -159,29 +84,14 @@ texture = ExtResource( 7 )
 
 [node name="Sprite" type="Sprite" parent="Light2D"]
 
-[node name="To Sea Cave 1" type="Area2D" parent="."]
+[node name="To Sea Cave 1" type="Area2D" parent="." groups=[
+"Scene Trigger",
+]]
 script = ExtResource( 5 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="To Sea Cave 1"]
 position = Vector2( -4.09003, 313.511 )
 shape = SubResource( 2 )
-
-[node name="SceneChangePlayer" type="AnimationPlayer" parent="To Sea Cave 1"]
-anims/DefaultInvisible = SubResource( 3 )
-anims/FadeIn = SubResource( 4 )
-anims/FadeOut = SubResource( 5 )
-anims/SceneChangeFade = SubResource( 6 )
-
-[node name="CanvasLayer" type="CanvasLayer" parent="To Sea Cave 1"]
-
-[node name="ColorRect" type="ColorRect" parent="To Sea Cave 1/CanvasLayer"]
-visible = false
-anchor_right = 1.0
-anchor_bottom = 1.0
-color = Color( 0, 0, 0, 0 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Player" parent="." instance=ExtResource( 6 )]
 position = Vector2( 2.39242, 124.369 )
@@ -195,18 +105,18 @@ collision_layer = 2
 
 [node name="Wall 1" type="CollisionShape2D" parent="Walls"]
 position = Vector2( 286.765, 373.527 )
-shape = SubResource( 7 )
+shape = SubResource( 3 )
 
 [node name="Wall 2" type="CollisionShape2D" parent="Walls"]
 position = Vector2( 10.5508, 96.869 )
-shape = SubResource( 8 )
+shape = SubResource( 4 )
 
 [node name="Wall 3" type="CollisionShape2D" parent="Walls"]
 position = Vector2( 277.174, 60.3599 )
-shape = SubResource( 9 )
+shape = SubResource( 5 )
 
 [node name="Wall 4" type="CollisionShape2D" parent="Walls"]
 position = Vector2( 614.48, 161.346 )
-shape = SubResource( 10 )
+shape = SubResource( 6 )
 
 [connection signal="body_entered" from="To Sea Cave 1" to="To Sea Cave 1" method="_on_To_Sea_Cave_1_body_entered"]

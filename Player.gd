@@ -2,10 +2,11 @@ extends KinematicBody2D
 
 
 var velocity = Vector2.ZERO
-onready var _animated_sprite =  $AnimatedSprite
+onready var anim = $AnimatedSprite
 export var speed = 100
 
 var _movement = Move.RIGHT_IDLE
+var last_frame
 
 enum Move {
 	LEFT, LEFT_IDLE, RIGHT, RIGHT_IDLE, DOWN, DOWN_IDLE, UP, UP_IDLE,
@@ -17,36 +18,32 @@ func _ready():
 
 func get_input():
 	if Input.is_action_pressed("ui_right"):
-		_movement = Move.RIGHT
+		anim.play("right")
+		last_frame = "right"
 	elif Input.is_action_pressed("ui_left"):
-		_movement = Move.LEFT
+		anim.play("right")
+		last_frame = "left"
 	elif Input.is_action_pressed("ui_down"):
-		_movement = Move.DOWN
+		anim.play("forward")
+		last_frame = "down"
 	elif Input.is_action_pressed("ui_up"):
-		_movement = Move.UP
+		anim.play("backward")
+		last_frame = "up"
 	else:
 		# tremble and weep - nangs
 		_movement += 1 - (_movement % 2)
 
 func _process(_delta):
-	_animated_sprite.flip_h = _movement < Move.RIGHT
-	match _movement:
-		Move.RIGHT:
-			_animated_sprite.play("right")
-		Move.LEFT:
-			_animated_sprite.play("right")
-		Move.DOWN:
-			_animated_sprite.play("forward")
-		Move.UP:
-			_animated_sprite.play("backward")
-		Move.RIGHT_IDLE:
-			_animated_sprite.play("idle right")
-		Move.LEFT_IDLE:
-			_animated_sprite.play("idle right")
-		Move.DOWN_IDLE:
-			_animated_sprite.play("idle forward")
-		Move.UP_IDLE:
-			_animated_sprite.play("idle backward")
+	if _movement == Move.LEFT:
+		anim.flip_h 
+	if last_frame == "right":
+		anim.play("idle right")
+	if last_frame == "left":
+			anim.play("idle right")
+	if last_frame == "down":
+			anim.play("idle forward")
+	if last_frame == "up":
+			anim.play("idle backward")
 
 func _physics_process(_delta):
 	get_input()
