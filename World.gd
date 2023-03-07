@@ -1,9 +1,23 @@
 extends Node2D
 
-
 export (String) var world_name = name
+onready var next_level_name 
+onready var current_level_name = world_name
+onready var current_level = str("res://", current_level_name, ".tscn")
+onready var next_level = str("res://", next_level_name, ".tscn")
+
+
+func handle_level_changed(current_level_name):
+	load(next_level)
+	current_level_name = next_level_name
+	
+func scene_change():
+	SceneChangePlayer.play("SceneChangeFade")
+	handle_level_changed(current_level_name)
 
 func _ready():
+	current_level_name = "Starting Cave"
+	next_level_name = "Sea Cave 1"
 	var cam = get_node("Player/Camera2D")
 	if world_name == "Starting Cave":
 		var map_limits = get_node("TileMapStartingCave").get_used_rect()
@@ -33,4 +47,21 @@ func _ready():
 		cam.limit_right = map_limits.end.x * map_cellsize.x
 		cam.limit_bottom = map_limits.end.y * map_cellsize.y
 
+
+
+
+func _on_To_Amons_Cave_body_entered(body):
+	next_level_name = "Amon's Cave"
+	scene_change()
+
+
+func _on_To_Starting_Cave_body_entered(body):
+	next_level_name = "Starting Cave"
+	scene_change()
+
+
+func _on_To_Sea_Cave_1_body_entered(body):
+	next_level_name = "Sea Cave 1"
+	print(next_level)
+	scene_change()
 

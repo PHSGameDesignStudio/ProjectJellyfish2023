@@ -120,3 +120,4 @@ shape = SubResource( 6 )
 position = Vector2( 0, 120.678 )
 
 [connection signal="body_entered" from="To Sea Cave 1" to="To Sea Cave 1" method="_on_To_Sea_Cave_1_body_entered"]
+[connection signal="body_entered" from="To Sea Cave 1" to="." method="_on_To_Sea_Cave_1_body_entered"]

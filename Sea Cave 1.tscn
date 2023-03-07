@@ -245,4 +245,6 @@ animation = "Position 1"
 position = Vector2( 8.02579, 390.054 )
 
 [connection signal="body_entered" from="To Starting Cave" to="To Starting Cave" method="_on_To_Starting_Cave_body_entered"]
-[connection signal="body_entered" from="To Amon's Cave" to="To Amon's Cave" method="_on_To_Amons_Cave_body_entered"]
+[connection signal="body_entered" from="To Starting Cave" to="." method="_on_To_Starting_Cave_body_entered"]
+[connection signal="body_entered" from="To Amon's Cave" to="To Starting Cave" method="_on_To_Amons_Cave_body_entered"]
+[connection signal="body_entered" from="To Amon's Cave" to="." method="_on_To_Amons_Cave_body_entered"]
