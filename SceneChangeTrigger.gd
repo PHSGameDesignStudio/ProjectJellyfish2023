@@ -2,6 +2,14 @@ extends Area2D
 
 var file_name = str("res://", ".tscn")
 
+
+func next_scene():
+	var scene_triggers = get_tree().get_nodes_in_group("Scene Trigger")
+	var nearest_scene_trigger = scene_triggers[0]
+	for scene_trigger in scene_triggers:
+		if scene_trigger.global_position.distance_to(Player.global_position) < nearest_scene_trigger.global_position.distance_to(Player.global_position):
+			nearest_scene_trigger = scene_trigger
+	print(nearest_scene_trigger)
 	
 func _ready():
 	pass

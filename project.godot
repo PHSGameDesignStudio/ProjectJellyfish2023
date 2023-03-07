@@ -29,8 +29,8 @@ config/icon="res://icon.png"
 GlobalWorld="*res://World.gd"
 ProjectJellyfish="*res://Project Jellyfish.gd"
 SceneChangePlayer="*res://SceneChangePlayer.tscn"
-Player="*res://Player.gd"
 SceneChangeTrigger="*res://SceneChangeTrigger.gd"
+Player="*res://Player.tscn"
 
 [gui]
 

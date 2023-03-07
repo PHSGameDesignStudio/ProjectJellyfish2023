@@ -93,9 +93,6 @@ script = ExtResource( 5 )
 position = Vector2( -4.09003, 313.511 )
 shape = SubResource( 2 )
 
-[node name="Player" parent="." instance=ExtResource( 6 )]
-position = Vector2( 2.39242, 124.369 )
-
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 color = Color( 0.0392157, 0.0392157, 0.0392157, 1 )
 
@@ -118,5 +115,8 @@ shape = SubResource( 5 )
 [node name="Wall 4" type="CollisionShape2D" parent="Walls"]
 position = Vector2( 614.48, 161.346 )
 shape = SubResource( 6 )
+
+[node name="Player" parent="." instance=ExtResource( 6 )]
+position = Vector2( 0, 120.678 )
 
 [connection signal="body_entered" from="To Sea Cave 1" to="To Sea Cave 1" method="_on_To_Sea_Cave_1_body_entered"]
