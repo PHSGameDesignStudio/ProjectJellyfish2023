@@ -1,19 +1,16 @@
 extends Node2D
 
 export (String) var world_name = name
-onready var next_level_name 
+onready var next_level_name = "Sea Cave 1"
 onready var current_level_name = world_name
-onready var current_level = str("res://", current_level_name, ".tscn")
-onready var next_level = str("res://", next_level_name, ".tscn")
+onready var current_level = str(current_level_name)
+onready var next_level = str(next_level_name)
 
-
-func handle_level_changed(current_level_name):
-	load(next_level)
-	current_level_name = next_level_name
 	
 func scene_change():
 	SceneChangePlayer.play("SceneChangeFade")
-	handle_level_changed(current_level_name)
+	get_tree().change_scene(next_level_name)
+	current_level_name = next_level_name
 
 func _ready():
 	current_level_name = "Starting Cave"
@@ -56,12 +53,12 @@ func _on_To_Amons_Cave_body_entered(body):
 
 
 func _on_To_Starting_Cave_body_entered(body):
-	next_level_name = "Starting Cave"
+	next_level_name = "Starting Cave.tscn"
 	scene_change()
 
 
 func _on_To_Sea_Cave_1_body_entered(body):
-	next_level_name = "Sea Cave 1"
+	next_level_name = "res://Sea Cave 1.tscn"
 	print(next_level)
 	scene_change()
 
