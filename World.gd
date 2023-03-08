@@ -1,7 +1,6 @@
 extends Node2D
 
 export (String) var world_name 
-onready var current_level_name = world_name
 	
 
 func _ready():
