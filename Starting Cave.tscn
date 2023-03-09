@@ -160,6 +160,10 @@ scale = Vector2( 7.38074, 7.43388 )
 texture = ExtResource( 11 )
 
 [node name="Player" parent="." instance=ExtResource( 9 )]
-position = Vector2( -13.9964, 34.9911 )
+position = Vector2( 26.5932, 195.95 )
 
+<<<<<<< Updated upstream
 [connection signal="body_entered" from="To Sea Cave 1" to="To Sea Cave 1" method="_on_To_Sea_Cave_1_body_entered"]
+=======
+[connection signal="body_entered" from="To Sea Cave 1" to="." method="_on_To_Sea_Cave_1_body_entered"]
+>>>>>>> Stashed changes

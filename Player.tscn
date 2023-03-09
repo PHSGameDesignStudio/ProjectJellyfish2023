@@ -26,16 +26,6 @@ animations = [ {
 "name": "backward",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 6 ) ],
-"loop": true,
-"name": "idle forward",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 7 ), ExtResource( 1 ) ],
-"loop": true,
-"name": "forward",
-"speed": 5.0
-}, {
 "frames": [ ExtResource( 8 ) ],
 "loop": true,
 "name": "idle right",
@@ -45,6 +35,16 @@ animations = [ {
 "loop": true,
 "name": "idle backward",
 "speed": 5.0
+}, {
+"frames": [ ExtResource( 7 ), ExtResource( 1 ) ],
+"loop": true,
+"name": "forward",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 6 ) ],
+"loop": true,
+"name": "idle forward",
+"speed": 5.0
 } ]
 
 [node name="Player" type="KinematicBody2D"]
@@ -52,11 +52,9 @@ collision_mask = 2
 script = ExtResource( 10 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( 33.6639, 169.716 )
 shape = SubResource( 1 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
-position = Vector2( 34.2039, 171.839 )
 scale = Vector2( 0.32216, 0.333458 )
 frames = SubResource( 2 )
 animation = "right"

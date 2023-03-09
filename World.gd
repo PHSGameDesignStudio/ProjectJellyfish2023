@@ -1,7 +1,20 @@
 extends Node2D
 
+<<<<<<< Updated upstream
 export (String) var world_name 
 	
+=======
+export (String) var world_name = name
+onready var next_level_name = "Sea Cave 1"
+onready var current_level_name = world_name
+onready var current_level = str(current_level_name)
+onready var next_level = str(next_level_name)
+
+
+	
+func scene_change():
+	SceneChangePlayer.play("SceneChangeFade")
+>>>>>>> Stashed changes
 
 func _ready():
 	var cam = get_node("Player/Camera2D")
@@ -26,9 +39,41 @@ func _ready():
 	elif world_name == "Amon's Cave":
 		var map_limits = get_node("TileMapAmon'sCave").get_used_rect()
 		var map_cellsize = get_node("TileMapAmon'sCave").cell_size
-		cam.zoom.x = 0.1
-		cam.zoom.y = 0.1
+		cam.zoom.x = 0.5
+		cam.zoom.y = 0.575
 		cam.limit_left = map_limits.position.x  * map_cellsize.x
 		cam.limit_top = map_limits.position.y * map_cellsize.y
 		cam.limit_right = map_limits.end.x * map_cellsize.x
 		cam.limit_bottom = map_limits.end.y * map_cellsize.y
+<<<<<<< Updated upstream
+=======
+
+
+
+
+func _on_To_Amons_Cave_body_entered(body):
+	if body.name == "Player":
+		next_level_name = "Amon's Cave.tscn"
+		scene_change()
+
+
+func _on_To_Starting_Cave_body_entered(body):
+	if body.name == "Player":
+		next_level_name = "Starting Cave.tscn"
+		scene_change()
+
+
+func _on_To_Sea_Cave_1_body_entered(body):
+	if body.name == "Player":
+		next_level_name = "Sea Cave 1.tscn"
+		scene_change()
+
+
+
+
+
+
+func _on_Transition_Timer_timeout():
+	get_tree().change_scene(next_level_name)
+	current_level_name = next_level_name
+>>>>>>> Stashed changes
