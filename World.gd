@@ -8,7 +8,12 @@ onready var next_level = str(next_level_name)
 
 	
 func scene_change():
-	SceneChangePlayer.play("SceneChangeFade")
+	var sceneChangePlayer : AnimationPlayer = get_viewport().get_node("SceneChangePlayer");
+	sceneChangePlayer.play("SceneChangeFade")
+	yield(get_tree().create_timer(sceneChangePlayer.current_animation_length / 2.0), "timeout")
+	get_tree().change_scene(next_level_name)
+	current_level_name = next_level_name
+	
 
 func _ready():
 	current_level_name = "Starting Cave"
@@ -63,5 +68,6 @@ func _on_To_Sea_Cave_1_body_entered(body):
 
 
 func _on_Transition_Timer_timeout():
-	get_tree().change_scene(next_level_name)
-	current_level_name = next_level_name
+	pass
+	#get_tree().change_scene(next_level_name)
+	#current_level_name = next_level_name
