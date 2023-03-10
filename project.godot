@@ -30,10 +30,11 @@ GlobalWorld="*res://World.gd"
 ProjectJellyfish="*res://Project Jellyfish.gd"
 SceneChangePlayer="*res://SceneChangePlayer.tscn"
 SceneChangeTrigger="*res://SceneChangeTrigger.gd"
-Player="*res://Player.tscn"
 SceneSwitcher="*res://Scene Switcher.gd"
 SceneChangePlayerScript="*res://SceneChangePlayer.gd"
 TransitionTimer="*res://Transition Timer.gd"
+PlayerAnimatedSprite="*res://AnimatedSprite.gd"
+Player="*res://Player.tscn"
 
 [gui]
 
