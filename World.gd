@@ -18,7 +18,7 @@ func scene_change():
 	
 
 func _ready():
-	Player.global_transform(Vector2(1,11))
+	#Player.global_transform(Vector2(1,11))
 	var cam = $Player/Camera2D
 	if world_name == "Starting Cave":
 		var map_limits = get_node("TileMapStartingCave").get_used_rect()
