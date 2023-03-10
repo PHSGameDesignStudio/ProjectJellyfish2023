@@ -16,9 +16,8 @@ func scene_change():
 	
 
 func _ready():
-	current_level_name = "Starting Cave"
-	next_level_name = "Sea Cave 1"
-	var cam = get_node("Player/Camera2D")
+	#Player.global_transform(Vector2(1,11))
+	var cam = $Player/Camera2D
 	if world_name == "Starting Cave":
 		var map_limits = get_node("TileMapStartingCave").get_used_rect()
 		var map_cellsize = get_node("TileMapStartingCave").cell_size

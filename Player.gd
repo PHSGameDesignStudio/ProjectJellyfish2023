@@ -5,64 +5,67 @@ var velocity = Vector2.ZERO
 onready var _animated_sprite = $AnimatedSprite
 export var speed = 100
 
-var _movement = Move.RIGHT_IDLE
+var _animation = Animation.RIGHT_IDLE
+var _move_x = MoveX.IDLE
+var _move_y = MoveY.IDLE
 
-enum Move {
-	LEFT, LEFT_IDLE, RIGHT, RIGHT_IDLE, DOWN, DOWN_IDLE, UP, UP_IDLE,
+enum MoveX { IDLE, RIGHT, LEFT = -1 }
+
+enum MoveY { IDLE, DOWN, UP = -1 }
+
+enum Animation {
+	LEFT, LEFT_IDLE, RIGHT, RIGHT_IDLE, UP, UP_IDLE, DOWN, DOWN_IDLE,
 }
 
 
 func _ready():
 	pass
 
-func get_input():
+# tremble and weep - nangs
+func process_input():
+	_move_x = MoveX.IDLE
+	_move_y = MoveY.IDLE
+
 	if Input.is_action_pressed("ui_right"):
-		_movement = Move.RIGHT
-	elif Input.is_action_pressed("ui_left"):
-		_movement = Move.LEFT
-	elif Input.is_action_pressed("ui_down"):
-		_movement = Move.DOWN
-	elif Input.is_action_pressed("ui_up"):
-		_movement = Move.UP
+		_move_x += MoveX.RIGHT
+	if Input.is_action_pressed("ui_left"):
+		_move_x += MoveX.LEFT
+
+	if Input.is_action_pressed("ui_down"):
+		_move_y += MoveY.DOWN
+	if Input.is_action_pressed("ui_up"):
+		_move_y += MoveY.UP
+
+	if _move_x != 0:
+		_animation = _move_x + 1
+	elif _move_y != 0:
+		_animation = _move_y + 5
 	else:
-		# tremble and weep - nangs
-		_movement += 1 - (_movement % 2)
+		_animation += 1 - (_animation % 2)
 
 func _process(_delta):
-	_animated_sprite.flip_h = _movement < Move.RIGHT
-	match _movement:
-		Move.RIGHT:
+	process_input()
+	_animated_sprite.flip_h = _animation < Animation.RIGHT
+	match _animation:
+		Animation.RIGHT:
 			_animated_sprite.play("right")
-		Move.LEFT:
+		Animation.LEFT:
 			_animated_sprite.play("right")
-		Move.DOWN:
+		Animation.DOWN:
 			_animated_sprite.play("forward")
-		Move.UP:
+		Animation.UP:
 			_animated_sprite.play("backward")
-		Move.RIGHT_IDLE:
+		Animation.RIGHT_IDLE:
 			_animated_sprite.play("idle right")
-		Move.LEFT_IDLE:
+		Animation.LEFT_IDLE:
 			_animated_sprite.play("idle right")
-		Move.DOWN_IDLE:
+		Animation.DOWN_IDLE:
 			_animated_sprite.play("idle forward")
-		Move.UP_IDLE:
+		Animation.UP_IDLE:
 			_animated_sprite.play("idle backward")
 
 func _physics_process(_delta):
-	get_input()
-	velocity = Vector2()
-	match _movement:
-		Move.RIGHT:
-			velocity.x = 1
-		Move.LEFT:
-			velocity.x = -1
-		Move.DOWN:
-			velocity.y = 1
-		Move.UP:
-			velocity.y = -1
-		_:
-			pass
-	# already unit vector
+	velocity = Vector2(_move_x, _move_y).normalized()
 	velocity *= 150
 	move_and_slide(velocity)
 	
