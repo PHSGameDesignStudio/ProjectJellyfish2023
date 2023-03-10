@@ -39,8 +39,8 @@ func _ready():
 	elif world_name == "Amon's Cave":
 		var map_limits = get_node("TileMapAmon'sCave").get_used_rect()
 		var map_cellsize = get_node("TileMapAmon'sCave").cell_size
-		cam.zoom.x = 0.1
-		cam.zoom.y = 0.1
+		cam.zoom.x = 0.5
+		cam.zoom.y = 0.575
 		cam.limit_left = map_limits.position.x  * map_cellsize.x
 		cam.limit_top = map_limits.position.y * map_cellsize.y
 		cam.limit_right = map_limits.end.x * map_cellsize.x
@@ -50,23 +50,21 @@ func _ready():
 
 
 func _on_To_Amons_Cave_body_entered(body):
-	next_level_name = "Amon's Cave"
-	scene_change()
+	if body.name == "Player":
+		next_level_name = "Amon's Cave.tscn"
+		scene_change()
 
 
 func _on_To_Starting_Cave_body_entered(body):
-	next_level_name = "Starting Cave.tscn"
-	scene_change()
+	if body.name == "Player":
+		next_level_name = "Starting Cave.tscn"
+		scene_change()
 
 
 func _on_To_Sea_Cave_1_body_entered(body):
-	next_level_name = "res://Sea Cave 1.tscn"
-	print(next_level)
-	scene_change()
+	if body.name == "Player":
+		next_level_name = "res://Sea Cave 1.tscn"
+		scene_change()
 
 
 
-func _on_Transition_Timer_timeout():
-	pass
-	#get_tree().change_scene(next_level_name)
-	#current_level_name = next_level_name
