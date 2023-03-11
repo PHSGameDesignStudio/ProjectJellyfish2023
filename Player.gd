@@ -64,8 +64,8 @@ func _process(_delta):
 		Animation.UP_IDLE:
 			_animated_sprite.play("idle backward")
 
-func _physics_process(_delta):
+func _physics_process(delta):
 	velocity = Vector2(_move_x, _move_y).normalized()
 	velocity *= 150
-	move_and_slide(velocity)
+	move_and_collide(velocity * delta)
 	
