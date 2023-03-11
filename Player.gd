@@ -3,7 +3,6 @@ extends KinematicBody2D
 
 var velocity = Vector2.ZERO
 onready var _animated_sprite = $AnimatedSprite
-export var speed = 100
 
 var _animation = Animation.RIGHT_IDLE
 var _move_x = MoveX.IDLE
@@ -17,9 +16,6 @@ enum Animation {
 	LEFT, LEFT_IDLE, RIGHT, RIGHT_IDLE, UP, UP_IDLE, DOWN, DOWN_IDLE,
 }
 
-
-func _ready():
-	pass
 
 # tremble and weep - nangs
 func process_input():
