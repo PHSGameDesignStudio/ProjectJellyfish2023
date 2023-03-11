@@ -69,5 +69,12 @@ func _physics_process(_delta):
 	velocity *= 150
 	move_and_slide(velocity)
 	
+func _on_Starting_Cave_player_position():
+	print(GlobalWorld.from_scene)
+	if GlobalWorld.from_scene == "Sea Cave 1":
+		position = get_node("../Starting Cave/To Sea Cave 1").position
 
-	
+
+func _on_Sea_Cave_1_player_position():
+	if GlobalWorld.from_scene == "Amon's Cave.tscn":
+		position = Vector2(1000,1000)

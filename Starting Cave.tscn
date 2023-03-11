@@ -162,5 +162,6 @@ texture = ExtResource( 11 )
 [node name="Player" parent="." instance=ExtResource( 9 )]
 position = Vector2( 25.1936, 201.549 )
 
-[connection signal="body_entered" from="To Sea Cave 1" to="To Sea Cave 1" method="_on_To_Sea_Cave_1_body_entered"]
+[connection signal="player_position" from="." to="Player" method="_on_Starting_Cave_player_position"]
 [connection signal="body_entered" from="To Sea Cave 1" to="." method="_on_To_Sea_Cave_1_body_entered"]
+[connection signal="body_entered" from="To Sea Cave 1" to="To Sea Cave 1" method="_on_To_Sea_Cave_1_body_entered"]

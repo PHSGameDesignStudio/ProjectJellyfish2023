@@ -1,22 +1,20 @@
 extends Node2D
 
 export (String) var world_name = name
-onready var next_level_name = "Sea Cave 1"
-onready var current_level_name = world_name
-onready var current_level = str(current_level_name)
-onready var next_level = str(next_level_name)
+var to_scene
+var from_scene
 
-	
+signal player_position
+
 func scene_change():
+	from_scene = world_name
 	var sceneChangePlayer : AnimationPlayer = get_viewport().get_node("SceneChangePlayer");
 	sceneChangePlayer.play("SceneChangeFade")
 	yield(get_tree().create_timer(sceneChangePlayer.current_animation_length / 2.0), "timeout")
-	get_tree().change_scene(next_level_name)
-	current_level_name = next_level_name
+	get_tree().change_scene(to_scene)
 	
 
 func _ready():
-	#Player.global_transform(Vector2(1,11))
 	var cam = $Player/Camera2D
 	if world_name == "Starting Cave":
 		var map_limits = get_node("TileMapStartingCave").get_used_rect()
@@ -51,20 +49,22 @@ func _ready():
 
 func _on_To_Amons_Cave_body_entered(body):
 	if body.name == "Player":
-		next_level_name = "Amon's Cave.tscn"
+		to_scene = "Amon's Cave.tscn"
 		scene_change()
 
 
 func _on_To_Starting_Cave_body_entered(body):
 	if body.name == "Player":
-		next_level_name = "Starting Cave.tscn"
+		to_scene = "Starting Cave.tscn"
 		scene_change()
+		Player.position == get_node("To Sea Cave 1/CollisionShape2D").position
 
 
 func _on_To_Sea_Cave_1_body_entered(body):
 	if body.name == "Player":
-		next_level_name = "res://Sea Cave 1.tscn"
+		to_scene = "Sea Cave 1.tscn"
 		scene_change()
+		emit_signal("player_position")
 
 
 
