@@ -69,7 +69,6 @@ extents = Vector2( 24.3621, 197.497 )
 
 [node name="Amon\'s Cave" type="Node2D"]
 script = ExtResource( 1 )
-world_name = "Amon's Cave"
 
 [node name="TileMapAmon\'sCave" type="TileMap" parent="."]
 tile_set = SubResource( 1 )
@@ -84,9 +83,7 @@ texture = ExtResource( 7 )
 
 [node name="Sprite" type="Sprite" parent="Light2D"]
 
-[node name="To Sea Cave 1" type="Area2D" parent="." groups=[
-"Scene Trigger",
-]]
+[node name="To Sea Cave 1" type="Area2D" parent="." groups=["Scene Trigger"]]
 script = ExtResource( 5 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="To Sea Cave 1"]
@@ -118,6 +115,3 @@ shape = SubResource( 6 )
 
 [node name="Player" parent="." instance=ExtResource( 6 )]
 position = Vector2( 35.8773, 296.803 )
-
-[connection signal="body_entered" from="To Sea Cave 1" to="." method="_on_To_Sea_Cave_1_body_entered"]
-[connection signal="body_entered" from="To Sea Cave 1" to="To Sea Cave 1" method="_on_To_Sea_Cave_1_body_entered"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://Resources/Sprites/Tiles/plain/_walltop4.png" type="Texture" id=1]
 [ext_resource path="res://Resources/Sprites/prismarinestone8wide.png" type="Texture" id=2]
@@ -108,38 +108,6 @@ polygon = PoolVector2Array( 960.728, 606.898, 960.728, 480.006, 1087.05, 480.006
 [sub_resource type="RectangleShape2D" id=9]
 extents = Vector2( 10, 89.7153 )
 
-[sub_resource type="Animation" id=10]
-resource_name = "FadeIn"
-length = 0.5
-tracks/0/type = "value"
-tracks/0/path = NodePath("CanvasLayer/ColorRect:color")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.5 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ Color( 0, 0, 0, 0 ), Color( 0, 0, 0, 1 ) ]
-}
-
-[sub_resource type="Animation" id=11]
-resource_name = "FadeOut"
-length = 0.5
-tracks/0/type = "value"
-tracks/0/path = NodePath("CanvasLayer/ColorRect:color")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.5 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ Color( 0, 0, 0, 1 ), Color( 0, 0, 0, 0 ) ]
-}
-
 [sub_resource type="SpriteFrames" id=12]
 animations = [ {
 "frames": [ ExtResource( 12 ) ],
@@ -150,7 +118,6 @@ animations = [ {
 
 [node name="Sea Cave 1" type="Node2D"]
 script = ExtResource( 7 )
-world_name = "Sea Cave 1"
 
 [node name="SeaCave1TileMap" type="TileMap" parent="."]
 tile_set = SubResource( 1 )
@@ -161,9 +128,7 @@ tile_data = PoolIntArray( 0, 4, 0, 1, 4, 0, 2, 4, 0, 3, 4, 0, 4, 4, 0, 5, 4, 0, 
 [node name="Player" parent="." instance=ExtResource( 8 )]
 position = Vector2( 55.5113, 551.092 )
 
-[node name="To Starting Cave" type="Area2D" parent="." groups=[
-"Scene Trigger",
-]]
+[node name="To Starting Cave" type="Area2D" parent="." groups=["Scene Trigger"]]
 script = ExtResource( 6 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="To Starting Cave"]
@@ -215,36 +180,15 @@ texture = ExtResource( 10 )
 
 [node name="Sprite" type="Sprite" parent="Light2D"]
 
-[node name="To Amon\'s Cave" type="Area2D" parent="." groups=[
-"Scene Trigger",
-]]
+[node name="To Amon\'s Cave" type="Area2D" parent="." groups=["Scene Trigger"]]
 script = ExtResource( 6 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="To Amon\'s Cave"]
 position = Vector2( 2052.18, 541.66 )
 shape = SubResource( 9 )
 
-[node name="SceneChangePlayer" type="AnimationPlayer" parent="To Amon\'s Cave"]
-anims/FadeIn = SubResource( 10 )
-anims/FadeOut = SubResource( 11 )
-
-[node name="CanvasLayer" type="CanvasLayer" parent="To Amon\'s Cave"]
-
-[node name="ColorRect" type="ColorRect" parent="To Amon\'s Cave/CanvasLayer"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-color = Color( 0, 0, 0, 0 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
 [node name="Tom the Hermit Crab" type="AnimatedSprite" parent="."]
 position = Vector2( 367.991, 338.456 )
 scale = Vector2( 2.47363, 2.25149 )
 frames = SubResource( 12 )
 animation = "Position 1"
-
-[connection signal="body_entered" from="To Starting Cave" to="." method="_on_To_Starting_Cave_body_entered"]
-[connection signal="body_entered" from="To Starting Cave" to="To Starting Cave" method="_on_To_Starting_Cave_body_entered"]
-[connection signal="body_entered" from="To Amon's Cave" to="." method="_on_To_Amons_Cave_body_entered"]
-[connection signal="body_entered" from="To Amon's Cave" to="To Starting Cave" method="_on_To_Amons_Cave_body_entered"]
