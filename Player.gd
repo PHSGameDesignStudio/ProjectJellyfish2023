@@ -36,9 +36,9 @@ func process_input():
 	if Input.is_action_pressed("ui_up"):
 		_move_y += MoveY.UP
 
-	if _move_x != 0:
+	if _move_x != MoveX.IDLE:
 		_animation = _move_x + 1
-	elif _move_y != 0:
+	elif _move_y != MoveY.IDLE:
 		_animation = _move_y + 5
 	else:
 		_animation += 1 - (_animation % 2)
