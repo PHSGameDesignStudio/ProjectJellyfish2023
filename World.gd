@@ -12,6 +12,9 @@ func _ready():
 	var cam = $Player/Camera2D
 	var matching_scene_trigger = globals.matching_scene_trigger
 	
+	globals.matching_scene_trigger = ""
+	ResourceSaver.save("res://GlobalResource.tres", globals)
+	
 	curr_scene = get_tree().get_current_scene().get_name()
 	
 	if curr_scene == "Starting Cave":
