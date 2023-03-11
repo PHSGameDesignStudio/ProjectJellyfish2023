@@ -1,6 +1,6 @@
 extends Node2D
 
-var curr_scene = "Starting Cave"
+export var curr_scene = "Starting Cave"
 onready var globals = preload("res://GlobalResource.tres")
 
 
