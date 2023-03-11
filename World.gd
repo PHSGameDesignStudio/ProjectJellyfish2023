@@ -72,7 +72,7 @@ func check_scene_change(colliding_body, scene_trigger):
 func scene_change(scene_trigger):
 	var sceneChangePlayer: AnimationPlayer = get_viewport().get_node("SceneChangePlayer");
 	sceneChangePlayer.play("SceneChangeFade")
-	yield(get_tree().create_timer(0.3), "timeout")
+	yield(get_tree().create_timer(0.4), "timeout")
 	
 	var next_scene
 	match scene_trigger.rfind("(") - 1:
