@@ -37,7 +37,9 @@ func _ready():
 	cam.limit_right = map_limits.end.x * map_cellsize.x
 	cam.limit_bottom = map_limits.end.y * map_cellsize.y
 	
-	var scene_trigger = get_node(matching_scene_trigger)
+	var scene_trigger
+	if matching_scene_trigger != "":
+		scene_trigger = get_node(matching_scene_trigger)
 	# FIXME: this check is probably indicative of poor design
 	if scene_trigger != null:
 		var position = scene_trigger.get_child(0).global_position
@@ -70,7 +72,7 @@ func check_scene_change(colliding_body, scene_trigger):
 func scene_change(scene_trigger):
 	var sceneChangePlayer: AnimationPlayer = get_viewport().get_node("SceneChangePlayer");
 	sceneChangePlayer.play("SceneChangeFade")
-	yield(get_tree().create_timer(sceneChangePlayer.current_animation_length / 2.5), "timeout")
+	yield(get_tree().create_timer(0.3), "timeout")
 	
 	var next_scene
 	match scene_trigger.rfind("(") - 1:

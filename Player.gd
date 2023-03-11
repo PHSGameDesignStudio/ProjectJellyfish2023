@@ -69,5 +69,3 @@ func _physics_process(_delta):
 	velocity *= 150
 	move_and_slide(velocity)
 	
-
-	

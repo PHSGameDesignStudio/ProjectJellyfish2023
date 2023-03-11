@@ -4,4 +4,4 @@
 
 [resource]
 script = ExtResource( 1 )
-matching_scene_trigger = ""
+matching_scene_trigger = "To Starting Cave"
