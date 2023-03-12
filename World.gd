@@ -68,7 +68,7 @@ func _notification(notif: int):
 		_:
 			pass
 
-func check_scene_change(colliding_body, scene_trigger):
+func on_scene_trigger_entered(colliding_body, scene_trigger):
 	if colliding_body.name == "Player":
 		scene_change(scene_trigger.get_name())
 
@@ -90,22 +90,11 @@ func scene_change(scene_trigger):
 	
 	get_tree().change_scene(next_scene_path)
 
-# has to be manually updated... (FIXME?)
+# ?FIXME: scene triggers have to be manually given group "Scene Trigger"
+# can this be more streamlined?!?!
 func register_scene_triggers():
-	var scene_trigger
+	var scene_triggers = get_tree().get_nodes_in_group("Scene Trigger")
 	
-	# looking like yandev right now :(
-	# ideal: find a better way to coalesce signals
-	if curr_scene == "Starting Cave":
-		scene_trigger = get_node("To Sea Cave 1")
-		scene_trigger.connect("body_entered", self, "check_scene_change", [scene_trigger])
-	elif curr_scene == "Sea Cave 1":
-		scene_trigger = get_node("To Starting Cave")
-		scene_trigger.connect("body_entered", self, "check_scene_change", [scene_trigger])
-		scene_trigger = get_node("To Amon's Cave")
-		scene_trigger.connect("body_entered", self, "check_scene_change", [scene_trigger])
-	elif curr_scene == "Amon's Cave":
-		scene_trigger = get_node("To Sea Cave 1")
-		scene_trigger.connect("body_entered", self, "check_scene_change", [scene_trigger])
-	else:
-		pass
+	for scene_trigger in scene_triggers:
+		scene_trigger.connect("body_entered", self, "on_scene_trigger_entered", [scene_trigger])
+		#scene_trigger.connect("body_exited", self, "on_scene_trigger_exited", [scene_trigger])
