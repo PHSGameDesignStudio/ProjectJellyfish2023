@@ -17,6 +17,8 @@ func _ready():
 	globals.matching_scene_trigger = ""
 	ResourceSaver.save("res://GlobalResource.tres", globals)
 	
+	$Player.animation = globals.player_anim
+	
 	if curr_scene == "Starting Cave":
 		map_limits = get_node("TileMapStartingCave").get_used_rect()
 		map_cellsize = get_node("TileMapStartingCave").cell_size
@@ -56,6 +58,7 @@ func _notification(notif: int):
 		MainLoop.NOTIFICATION_WM_QUIT_REQUEST, MainLoop.NOTIFICATION_WM_GO_BACK_REQUEST:
 			# FIXME: probably a cleaner way to do this
 			globals.matching_scene_trigger = ""
+			globals.player_anim = 3
 			ResourceSaver.save("res://GlobalResource.tres", globals)
 		_:
 			pass
@@ -79,6 +82,7 @@ func scene_change(scene_trigger):
 
 	matching_scene_trigger = scene_trigger.replace(next_scene, curr_scene)
 	globals.matching_scene_trigger = matching_scene_trigger
+	globals.player_anim = $Player.animation
 	ResourceSaver.save("res://GlobalResource.tres", globals)
 	
 	get_tree().change_scene(str(next_scene, ".tscn"))

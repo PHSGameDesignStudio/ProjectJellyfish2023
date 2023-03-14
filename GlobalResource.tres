@@ -5,3 +5,4 @@
 [resource]
 script = ExtResource( 1 )
 matching_scene_trigger = ""
+player_anim = 3

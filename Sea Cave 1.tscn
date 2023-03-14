@@ -135,7 +135,7 @@ position = Vector2( -0.307299, 557.184 )
 shape = SubResource( 2 )
 
 [node name="Position2D" type="Position2D" parent="To Starting Cave"]
-position = Vector2( 47.4999, 551.412 )
+position = Vector2( 56.8784, 557.905 )
 
 [node name="Walls" type="StaticBody2D" parent="."]
 
@@ -203,7 +203,7 @@ position = Vector2( 2041.63, 535.798 )
 shape = SubResource( 9 )
 
 [node name="Position2D" type="Position2D" parent="To Amon\'s Cave"]
-position = Vector2( 1992.45, 530.946 )
+position = Vector2( 1992.45, 567.553 )
 
 [node name="Tom the Hermit Crab" type="AnimatedSprite" parent="."]
 position = Vector2( 367.991, 338.456 )

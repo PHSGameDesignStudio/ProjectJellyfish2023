@@ -4,7 +4,7 @@ extends KinematicBody2D
 var velocity = Vector2.ZERO
 onready var _animated_sprite = $AnimatedSprite
 
-var _animation = PlayerAnim.RIGHT_IDLE
+export var animation: int = PlayerAnim.RIGHT_IDLE
 var _move_x = MoveX.IDLE
 var _move_y = MoveY.IDLE
 
@@ -33,17 +33,17 @@ func process_input():
 		_move_y += MoveY.UP
 
 	if _move_x != MoveX.IDLE:
-		_animation = _move_x + 1
+		animation = _move_x + 1
 	elif _move_y != MoveY.IDLE:
-		_animation = _move_y + 5
+		animation = _move_y + 5
 	else:
-		_animation += 1 - (_animation % 2)
+		animation += 1 - (animation % 2)
 
 func _process(_delta):
 	process_input()
 	
-	_animated_sprite.flip_h = _animation < PlayerAnim.RIGHT
-	match _animation:
+	_animated_sprite.flip_h = animation < PlayerAnim.RIGHT
+	match animation:
 		PlayerAnim.RIGHT, PlayerAnim.LEFT:
 			_animated_sprite.play("right")
 		PlayerAnim.DOWN:
