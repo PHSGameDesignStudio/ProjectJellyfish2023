@@ -4,7 +4,7 @@ extends KinematicBody2D
 var velocity = Vector2.ZERO
 onready var _animated_sprite = $AnimatedSprite
 
-export var animation: int = PlayerAnim.RIGHT_IDLE
+var animation: int = PlayerAnim.RIGHT_IDLE
 var _move_x = MoveX.IDLE
 var _move_y = MoveY.IDLE
 
@@ -60,4 +60,9 @@ func _process(_delta):
 func _physics_process(delta):
 	velocity = Vector2(_move_x, _move_y).normalized() * 150
 	move_and_collide(velocity * delta)
-	
+
+func get_animation() -> int:
+	return animation
+
+func set_animation(anim):
+	animation = anim
