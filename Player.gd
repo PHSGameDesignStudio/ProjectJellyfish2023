@@ -4,7 +4,7 @@ extends KinematicBody2D
 var velocity = Vector2.ZERO
 onready var _animated_sprite = $AnimatedSprite
 
-var _animation = Animation.RIGHT_IDLE
+var _animation = PlayerAnim.RIGHT_IDLE
 var _move_x = MoveX.IDLE
 var _move_y = MoveY.IDLE
 
@@ -12,7 +12,7 @@ enum MoveX { IDLE, RIGHT, LEFT = -1 }
 
 enum MoveY { IDLE, DOWN, UP = -1 }
 
-enum Animation {
+enum PlayerAnim {
 	LEFT, LEFT_IDLE, RIGHT, RIGHT_IDLE, UP, UP_IDLE, DOWN, DOWN_IDLE,
 }
 
@@ -41,27 +41,23 @@ func process_input():
 
 func _process(_delta):
 	process_input()
-	_animated_sprite.flip_h = _animation < Animation.RIGHT
+	
+	_animated_sprite.flip_h = _animation < PlayerAnim.RIGHT
 	match _animation:
-		Animation.RIGHT:
+		PlayerAnim.RIGHT, PlayerAnim.LEFT:
 			_animated_sprite.play("right")
-		Animation.LEFT:
-			_animated_sprite.play("right")
-		Animation.DOWN:
+		PlayerAnim.DOWN:
 			_animated_sprite.play("forward")
-		Animation.UP:
+		PlayerAnim.UP:
 			_animated_sprite.play("backward")
-		Animation.RIGHT_IDLE:
+		PlayerAnim.RIGHT_IDLE, PlayerAnim.LEFT_IDLE:
 			_animated_sprite.play("idle right")
-		Animation.LEFT_IDLE:
-			_animated_sprite.play("idle right")
-		Animation.DOWN_IDLE:
+		PlayerAnim.DOWN_IDLE:
 			_animated_sprite.play("idle forward")
-		Animation.UP_IDLE:
+		PlayerAnim.UP_IDLE:
 			_animated_sprite.play("idle backward")
 
 func _physics_process(delta):
-	velocity = Vector2(_move_x, _move_y).normalized()
-	velocity *= 150
+	velocity = Vector2(_move_x, _move_y).normalized() * 150
 	move_and_collide(velocity * delta)
 	
