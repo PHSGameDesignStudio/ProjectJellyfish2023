@@ -44,7 +44,7 @@ func _ready():
 		var scene_trigger = get_node(matching_scene_trigger)
 		# FIXME: this check is probably indicative of poor design
 		if scene_trigger != null:
-			var position = scene_trigger.get_child(0).global_position
+			var position = scene_trigger.get_child(1).global_position
 			$Player.global_position = position
 	else:
 		pass
@@ -56,7 +56,6 @@ func _notification(notif: int):
 		MainLoop.NOTIFICATION_WM_QUIT_REQUEST, MainLoop.NOTIFICATION_WM_GO_BACK_REQUEST:
 			# FIXME: probably a cleaner way to do this
 			globals.matching_scene_trigger = ""
-			globals.just_changed_scene = false
 			ResourceSaver.save("res://GlobalResource.tres", globals)
 		_:
 			pass
@@ -64,15 +63,12 @@ func _notification(notif: int):
 func on_scene_trigger_entered(colliding_body, scene_trigger):
 	print("Entered: ", scene_trigger.get_name(), " < ", colliding_body.get_name())
 	if colliding_body.name == "Player":
-		globals = ResourceLoader.load("res://GlobalResource.tres")
-		if globals.just_changed_scene:
-			return
 		scene_change(scene_trigger.get_name())
 
 func scene_change(scene_trigger):
 	var sceneChangePlayer: AnimationPlayer = get_viewport().get_node("SceneChangePlayer");
 	sceneChangePlayer.play("SceneChangeFade")
-	yield(get_tree().create_timer(0.4), "timeout")
+	yield(get_tree().create_timer(0.3), "timeout")
 	
 	var next_scene
 	match scene_trigger.rfind("(") - 1:
@@ -83,18 +79,9 @@ func scene_change(scene_trigger):
 
 	matching_scene_trigger = scene_trigger.replace(next_scene, curr_scene)
 	globals.matching_scene_trigger = matching_scene_trigger
-	globals.just_changed_scene = true
 	ResourceSaver.save("res://GlobalResource.tres", globals)
 	
 	get_tree().change_scene(str(next_scene, ".tscn"))
-
-func on_scene_trigger_exited(colliding_body, scene_trigger):
-	print("Exited: ", scene_trigger.get_name(), " > ", colliding_body.get_name())
-	if colliding_body.name == "Player":
-		if scene_trigger.get_name() != matching_scene_trigger:
-			return
-		globals.just_changed_scene = false
-		ResourceSaver.save("res://GlobalResource.tres", globals)
 
 # ?FIXME: scene triggers have to be manually given group "Scene Trigger"
 # can this be more streamlined?!?!
@@ -103,4 +90,3 @@ func register_scene_triggers():
 	
 	for scene_trigger in scene_triggers:
 		scene_trigger.connect("body_entered", self, "on_scene_trigger_entered", [scene_trigger])
-		scene_trigger.connect("body_exited", self, "on_scene_trigger_exited", [scene_trigger])
