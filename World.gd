@@ -1,18 +1,15 @@
 extends Node2D
 
-export var curr_scene = "Starting Cave"
+export var curr_scene = "Starting Cave.tscn"
 onready var globals = preload("res://GlobalResource.tres")
 
 
 func _ready():
-	print("New scene instance!")
-	
 	var map_limits
 	var map_cellsize
 	var cam = $Player/Camera2D
 	var matching_scene_trigger = globals.matching_scene_trigger
 	
-	globals.matching_scene_trigger = ""
 	ResourceSaver.save("res://GlobalResource.tres", globals)
 	
 	curr_scene = get_tree().get_current_scene().get_name()
