@@ -1,21 +1,21 @@
 extends Node2D
 
 export var curr_scene = "Starting Cave"
+export var matching_scene_trigger = ""
 onready var globals = preload("res://GlobalResource.tres")
 
 
 func _ready():
-	print("New scene instance!")
+	curr_scene = get_tree().get_current_scene().get_name()
+	print("New scene instance! (", curr_scene, ")")
 	
 	var map_limits
 	var map_cellsize
 	var cam = $Player/Camera2D
-	var matching_scene_trigger = globals.matching_scene_trigger
 	
+	matching_scene_trigger = globals.matching_scene_trigger
 	globals.matching_scene_trigger = ""
 	ResourceSaver.save("res://GlobalResource.tres", globals)
-	
-	curr_scene = get_tree().get_current_scene().get_name()
 	
 	if curr_scene == "Starting Cave":
 		map_limits = get_node("TileMapStartingCave").get_used_rect()
@@ -40,19 +40,11 @@ func _ready():
 	cam.limit_right = map_limits.end.x * map_cellsize.x
 	cam.limit_bottom = map_limits.end.y * map_cellsize.y
 	
-	var scene_trigger
 	if matching_scene_trigger != "":
-		scene_trigger = get_node(matching_scene_trigger)
-	# FIXME: this check is probably indicative of poor design
-	if scene_trigger != null:
-		var position = scene_trigger.get_child(0).global_position
-		var mid_x = (cam.limit_right - cam.limit_left) / 2
-		var dev_x = (position.x - mid_x) / mid_x
-		if dev_x > 0:
-			position.x -= 100
-			$Player.global_position = position
-		elif dev_x < 0:
-			position.x += 100
+		var scene_trigger = get_node(matching_scene_trigger)
+		# FIXME: this check is probably indicative of poor design
+		if scene_trigger != null:
+			var position = scene_trigger.get_child(0).global_position
 			$Player.global_position = position
 	else:
 		pass
@@ -64,12 +56,17 @@ func _notification(notif: int):
 		MainLoop.NOTIFICATION_WM_QUIT_REQUEST, MainLoop.NOTIFICATION_WM_GO_BACK_REQUEST:
 			# FIXME: probably a cleaner way to do this
 			globals.matching_scene_trigger = ""
+			globals.just_changed_scene = false
 			ResourceSaver.save("res://GlobalResource.tres", globals)
 		_:
 			pass
 
 func on_scene_trigger_entered(colliding_body, scene_trigger):
+	print("Entered: ", scene_trigger.get_name(), " < ", colliding_body.get_name())
 	if colliding_body.name == "Player":
+		globals = ResourceLoader.load("res://GlobalResource.tres")
+		if globals.just_changed_scene:
+			return
 		scene_change(scene_trigger.get_name())
 
 func scene_change(scene_trigger):
@@ -83,12 +80,21 @@ func scene_change(scene_trigger):
 			next_scene = scene_trigger.substr(3)
 		var n:
 			next_scene = scene_trigger.substr(3, n - 3)
-	var next_scene_path = str(next_scene, ".tscn")
-	var matching_scene_trigger = scene_trigger.replace(next_scene, curr_scene)
+
+	matching_scene_trigger = scene_trigger.replace(next_scene, curr_scene)
 	globals.matching_scene_trigger = matching_scene_trigger
+	globals.just_changed_scene = true
 	ResourceSaver.save("res://GlobalResource.tres", globals)
 	
-	get_tree().change_scene(next_scene_path)
+	get_tree().change_scene(str(next_scene, ".tscn"))
+
+func on_scene_trigger_exited(colliding_body, scene_trigger):
+	print("Exited: ", scene_trigger.get_name(), " > ", colliding_body.get_name())
+	if colliding_body.name == "Player":
+		if scene_trigger.get_name() != matching_scene_trigger:
+			return
+		globals.just_changed_scene = false
+		ResourceSaver.save("res://GlobalResource.tres", globals)
 
 # ?FIXME: scene triggers have to be manually given group "Scene Trigger"
 # can this be more streamlined?!?!
@@ -97,4 +103,4 @@ func register_scene_triggers():
 	
 	for scene_trigger in scene_triggers:
 		scene_trigger.connect("body_entered", self, "on_scene_trigger_entered", [scene_trigger])
-		#scene_trigger.connect("body_exited", self, "on_scene_trigger_exited", [scene_trigger])
+		scene_trigger.connect("body_exited", self, "on_scene_trigger_exited", [scene_trigger])
