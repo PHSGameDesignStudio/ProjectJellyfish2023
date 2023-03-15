@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://Resources/Sprites/prismarine.png" type="Texture" id=1]
 [ext_resource path="res://Resources/Sprites/prismarinestone3wide.png" type="Texture" id=2]
@@ -8,7 +8,6 @@
 [ext_resource path="res://pixil-frame-0 (27).png" type="Texture" id=6]
 [ext_resource path="res://SceneChangeTrigger.gd" type="Script" id=7]
 [ext_resource path="res://World.gd" type="Script" id=8]
-[ext_resource path="res://Player.tscn" type="PackedScene" id=9]
 [ext_resource path="res://lightgame.png" type="Texture" id=10]
 [ext_resource path="res://bleachedcoralweapon.png" type="Texture" id=11]
 
@@ -168,5 +167,5 @@ position = Vector2( -51.271, 5.6853 )
 scale = Vector2( 7.38074, 7.43388 )
 texture = ExtResource( 11 )
 
-[node name="Player" parent="." instance=ExtResource( 9 )]
-position = Vector2( 26.3326, 199.271 )
+[node name="Starting Position" type="Position2D" parent="."]
+position = Vector2( 21.5021, 183.198 )

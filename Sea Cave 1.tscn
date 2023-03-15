@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=25 format=2]
 
 [ext_resource path="res://Resources/Sprites/Tiles/plain/_walltop4.png" type="Texture" id=1]
 [ext_resource path="res://Resources/Sprites/prismarinestone8wide.png" type="Texture" id=2]
@@ -7,10 +7,10 @@
 [ext_resource path="res://Resources/Sprites/Tiles/plain/sand.png" type="Texture" id=5]
 [ext_resource path="res://SceneChangeTrigger.gd" type="Script" id=6]
 [ext_resource path="res://World.gd" type="Script" id=7]
-[ext_resource path="res://Player.tscn" type="PackedScene" id=8]
 [ext_resource path="res://ocean_tileset.tres" type="TileSet" id=9]
 [ext_resource path="res://pixil-frame-2 (15).png" type="Texture" id=10]
 [ext_resource path="res://pixil-frame-0 (43).png" type="Texture" id=11]
+[ext_resource path="res://Tom the Hermit Crab.gd" type="Script" id=12]
 
 [sub_resource type="TileSet" id=1]
 0/name = "prismarine.png 0"
@@ -116,10 +116,20 @@ animations = [ {
 "speed": 5.0
 } ]
 
+[sub_resource type="RectangleShape2D" id=13]
+extents = Vector2( 41.677, 15.0225 )
+
+[sub_resource type="RectangleShape2D" id=14]
+extents = Vector2( 106.848, 0.954285 )
+
+[sub_resource type="RectangleShape2D" id=15]
+extents = Vector2( 108.57, 0.309113 )
+
 [node name="Sea Cave 1" type="Node2D"]
 script = ExtResource( 7 )
 
 [node name="SeaCave1TileMap" type="TileMap" parent="."]
+z_index = -1000
 tile_set = SubResource( 1 )
 cell_size = Vector2( 32, 32 )
 format = 1
@@ -135,7 +145,7 @@ position = Vector2( -0.307299, 557.184 )
 shape = SubResource( 2 )
 
 [node name="Position2D" type="Position2D" parent="To Starting Cave"]
-position = Vector2( 56.8784, 557.905 )
+position = Vector2( 38.8429, 550.691 )
 
 [node name="Walls" type="StaticBody2D" parent="."]
 
@@ -179,9 +189,6 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Player" parent="." instance=ExtResource( 8 )]
-position = Vector2( 55.5113, 551.092 )
-
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 color = Color( 0.12549, 0.12549, 0.12549, 1 )
 
@@ -205,8 +212,44 @@ shape = SubResource( 9 )
 [node name="Position2D" type="Position2D" parent="To Amon\'s Cave"]
 position = Vector2( 1992.45, 567.553 )
 
-[node name="Tom the Hermit Crab" type="AnimatedSprite" parent="."]
+[node name="Tom the Hermit Crab" type="RigidBody2D" parent="."]
+collision_layer = 4
+collision_mask = 5
+mode = 3
+gravity_scale = 0.0
+custom_integrator = true
+script = ExtResource( 12 )
+
+[node name="Tom sprite" type="AnimatedSprite" parent="Tom the Hermit Crab"]
 position = Vector2( 367.991, 338.456 )
 scale = Vector2( 2.47363, 2.25149 )
 frames = SubResource( 10 )
 animation = "Position 1"
+
+[node name="Moving below Tom" type="Area2D" parent="Tom the Hermit Crab"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Tom the Hermit Crab/Moving below Tom"]
+position = Vector2( 368.114, 359.647 )
+shape = SubResource( 13 )
+
+[node name="Moving up" type="Area2D" parent="Tom the Hermit Crab"]
+position = Vector2( 0.694946, -26.4088 )
+
+[node name="Going up" type="CollisionShape2D" parent="Tom the Hermit Crab/Moving up"]
+position = Vector2( 371.245, 294.591 )
+shape = SubResource( 14 )
+one_way_collision = true
+one_way_collision_margin = 128.0
+
+[node name="Moving down" type="Area2D" parent="Tom the Hermit Crab"]
+
+[node name="Going down" type="CollisionShape2D" parent="Tom the Hermit Crab/Moving down"]
+position = Vector2( 370.875, 343.713 )
+rotation = -3.14159
+shape = SubResource( 15 )
+one_way_collision = true
+one_way_collision_margin = 128.0
+
+[connection signal="body_entered" from="Tom the Hermit Crab/Moving below Tom" to="Tom the Hermit Crab" method="_on_Moving_below_Tom_body_entered"]
+[connection signal="body_entered" from="Tom the Hermit Crab/Moving up" to="Tom the Hermit Crab" method="_on_Moving_up_body_entered"]
+[connection signal="body_entered" from="Tom the Hermit Crab/Moving down" to="Tom the Hermit Crab" method="_on_Moving_down_body_entered"]

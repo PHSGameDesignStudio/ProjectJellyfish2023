@@ -6,18 +6,21 @@ onready var globals = preload("res://GlobalResource.tres")
 
 
 func _ready():
+	Player.position = $"Starting Position".position
+	print(Player.position)
+	print($"Starting Position".position)
 	curr_scene = get_tree().get_current_scene().get_name()
 	print("New scene instance! (", curr_scene, ")")
 	
 	var map_limits
 	var map_cellsize
-	var cam = $Player/Camera2D
+	var cam = $"/root/Player/Camera2D"
 	
 	matching_scene_trigger = globals.matching_scene_trigger
 	globals.matching_scene_trigger = ""
 	ResourceSaver.save("res://GlobalResource.tres", globals)
 	
-	$Player.set_animation(globals.player_anim)
+	Player.set_animation(globals.player_anim)
 	
 	if curr_scene == "Starting Cave":
 		map_limits = get_node("TileMapStartingCave").get_used_rect()
@@ -47,7 +50,7 @@ func _ready():
 		# FIXME: this check is probably indicative of poor design
 		if scene_trigger != null:
 			var position = scene_trigger.get_child(1).global_position
-			$Player.global_position = position
+			Player.global_position = position
 	else:
 		pass
 	
@@ -82,7 +85,7 @@ func scene_change(scene_trigger):
 
 	matching_scene_trigger = scene_trigger.replace(next_scene, curr_scene)
 	globals.matching_scene_trigger = matching_scene_trigger
-	globals.player_anim = $Player.get_animation()
+	globals.player_anim = Player.get_animation()
 	ResourceSaver.save("res://GlobalResource.tres", globals)
 	
 	get_tree().change_scene(str(next_scene, ".tscn"))

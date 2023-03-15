@@ -16,7 +16,6 @@ enum PlayerAnim {
 	LEFT, LEFT_IDLE, RIGHT, RIGHT_IDLE, UP, UP_IDLE, DOWN, DOWN_IDLE,
 }
 
-
 # tremble and weep - nangs
 func process_input():
 	_move_x = MoveX.IDLE
