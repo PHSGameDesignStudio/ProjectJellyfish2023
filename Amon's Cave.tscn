@@ -1,11 +1,10 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://World.gd" type="Script" id=1]
 [ext_resource path="res://Resources/Sprites/Tiles/plain/_walltop4.png" type="Texture" id=2]
 [ext_resource path="res://Resources/Sprites/Tiles/sand.png" type="Texture" id=3]
 [ext_resource path="res://Resources/Sprites/Tiles/prismarinestone3wide.png" type="Texture" id=4]
 [ext_resource path="res://SceneChangeTrigger.gd" type="Script" id=5]
-[ext_resource path="res://Player.tscn" type="PackedScene" id=6]
 [ext_resource path="res://pixil-frame-0 (34).png" type="Texture" id=7]
 
 [sub_resource type="TileSet" id=1]
@@ -86,9 +85,7 @@ texture = ExtResource( 7 )
 
 [node name="Sprite" type="Sprite" parent="Light2D"]
 
-[node name="To Sea Cave 1" type="Area2D" parent="." groups=[
-"Scene Trigger",
-]]
+[node name="To Sea Cave 1" type="Area2D" parent="." groups=["Scene Trigger"]]
 script = ExtResource( 5 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="To Sea Cave 1"]
@@ -124,6 +121,3 @@ shape = SubResource( 6 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Walls"]
 position = Vector2( -3.43225, 284.312 )
 shape = SubResource( 7 )
-
-[node name="Player" parent="." instance=ExtResource( 6 )]
-position = Vector2( 35.8773, 296.803 )
