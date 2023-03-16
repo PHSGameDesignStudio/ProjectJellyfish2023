@@ -60,9 +60,3 @@ func _process(_delta):
 func _physics_process(delta):
 	velocity = Vector2(_move_x, _move_y).normalized() * 150
 	move_and_collide(velocity * delta)
-
-func get_animation() -> int:
-	return animation
-
-func set_animation(anim):
-	animation = anim

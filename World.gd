@@ -9,10 +9,7 @@ onready var globals = preload("res://GlobalResource.tres")
 
 func _ready():
 	curr_scene = world.get_child(2)
-	print("New scene instance! (", curr_scene.get_name(), ")")
-	var top_level_nodes = world.get_children()
-	for node in top_level_nodes:
-		print("Top level nodes: ", node.get_name())
+	print("\nNew scene instance! (", curr_scene.get_name(), ")\n")
 	
 	var map_limits
 	var map_cellsize
@@ -21,8 +18,6 @@ func _ready():
 	matching_scene_trigger = globals.matching_scene_trigger
 	globals.matching_scene_trigger = ""
 	ResourceSaver.save("res://GlobalResource.tres", globals)
-	
-	player.set_animation(globals.player_anim)
 	
 	if curr_scene.get_name() == "Starting Cave":
 		map_limits = curr_scene.get_node("TileMapStartingCave").get_used_rect()
@@ -51,7 +46,6 @@ func _ready():
 		var scene_trigger = curr_scene.get_node(matching_scene_trigger)
 		# FIXME: this check is probably indicative of poor design
 		if scene_trigger != null:
-			print(scene_trigger)
 			var position = scene_trigger.get_child(1).global_position
 			player.global_position = position
 	else:
@@ -65,7 +59,6 @@ func _notification(notif: int):
 		MainLoop.NOTIFICATION_WM_QUIT_REQUEST, MainLoop.NOTIFICATION_WM_GO_BACK_REQUEST:
 			# FIXME: probably a cleaner way to do this
 			globals.matching_scene_trigger = ""
-			globals.player_anim = 3
 			ResourceSaver.save("res://GlobalResource.tres", globals)
 		_:
 			pass
@@ -76,7 +69,6 @@ func on_scene_trigger_entered(colliding_body, scene_trigger):
 		scene_change(scene_trigger.get_name())
 
 func scene_change(scene_trigger):
-	#var sceneChangePlayer: AnimationPlayer = get_viewport().get_node("SceneChangePlayer");
 	var sceneChangePlayer = world.get_node("SceneChangePlayer")
 	sceneChangePlayer.play("SceneChangeFade")
 	yield(get_tree().create_timer(0.3), "timeout")
@@ -90,7 +82,6 @@ func scene_change(scene_trigger):
 
 	matching_scene_trigger = scene_trigger.replace(next_scene, curr_scene.get_name())
 	globals.matching_scene_trigger = matching_scene_trigger
-	globals.player_anim = player.get_animation()
 	ResourceSaver.save("res://GlobalResource.tres", globals)
 	
 	world.remove_child(world.get_child(1))
