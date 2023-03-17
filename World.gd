@@ -1,40 +1,37 @@
 extends Node2D
 
-export var curr_scene = "Starting Cave"
+onready var world = get_tree().get_current_scene()
+export var curr_scene = ""
 export var matching_scene_trigger = ""
+onready var player = world.get_node("Player")
 onready var globals = preload("res://GlobalResource.tres")
 
 
 func _ready():
-	Player.position = $"Starting Position".position
-	print(Player.position)
-	print($"Starting Position".position)
-	curr_scene = get_tree().get_current_scene().get_name()
-	print("New scene instance! (", curr_scene, ")")
+	curr_scene = world.get_child(2)
+	print("\nNew scene instance! (", curr_scene.get_name(), ")\n")
 	
 	var map_limits
 	var map_cellsize
-	var cam = $"/root/Player/Camera2D"
+	var cam = player.get_node("Camera2D")
 	
 	matching_scene_trigger = globals.matching_scene_trigger
 	globals.matching_scene_trigger = ""
 	ResourceSaver.save("res://GlobalResource.tres", globals)
 	
-	Player.set_animation(globals.player_anim)
-	
-	if curr_scene == "Starting Cave":
-		map_limits = get_node("TileMapStartingCave").get_used_rect()
-		map_cellsize = get_node("TileMapStartingCave").cell_size
+	if curr_scene.get_name() == "Starting Cave":
+		map_limits = curr_scene.get_node("TileMapStartingCave").get_used_rect()
+		map_cellsize = curr_scene.get_node("TileMapStartingCave").cell_size
 		cam.zoom.x = 0.5
 		cam.zoom.y = 0.575
-	elif curr_scene == "Sea Cave 1":
-		map_limits = get_node("SeaCave1TileMap").get_used_rect()
-		map_cellsize = get_node("SeaCave1TileMap").cell_size
+	elif curr_scene.get_name() == "Sea Cave 1":
+		map_limits = curr_scene.get_node("SeaCave1TileMap").get_used_rect()
+		map_cellsize = curr_scene.get_node("SeaCave1TileMap").cell_size
 		cam.zoom.x = 1
 		cam.zoom.y = 1
-	elif curr_scene == "Amon's Cave":
-		map_limits = get_node("TileMapAmon'sCave").get_used_rect()
-		map_cellsize = get_node("TileMapAmon'sCave").cell_size
+	elif curr_scene.get_name() == "Amon's Cave":
+		map_limits = curr_scene.get_node("TileMapAmon'sCave").get_used_rect()
+		map_cellsize = curr_scene.get_node("TileMapAmon'sCave").cell_size
 		cam.zoom.x = 0.5
 		cam.zoom.y = 0.575
 	else:
@@ -46,13 +43,14 @@ func _ready():
 	cam.limit_bottom = map_limits.end.y * map_cellsize.y
 	
 	if matching_scene_trigger != "":
-		var scene_trigger = get_node(matching_scene_trigger)
+		var scene_trigger = curr_scene.get_node(matching_scene_trigger)
 		# FIXME: this check is probably indicative of poor design
 		if scene_trigger != null:
 			var position = scene_trigger.get_child(1).global_position
-			Player.global_position = position
+			player.global_position = position
 	else:
-		pass
+		var start_position = curr_scene.get_node("PlayerStart")
+		player.global_position = start_position.global_position
 	
 	register_scene_triggers()
 
@@ -61,7 +59,6 @@ func _notification(notif: int):
 		MainLoop.NOTIFICATION_WM_QUIT_REQUEST, MainLoop.NOTIFICATION_WM_GO_BACK_REQUEST:
 			# FIXME: probably a cleaner way to do this
 			globals.matching_scene_trigger = ""
-			globals.player_anim = 3
 			ResourceSaver.save("res://GlobalResource.tres", globals)
 		_:
 			pass
@@ -72,7 +69,7 @@ func on_scene_trigger_entered(colliding_body, scene_trigger):
 		scene_change(scene_trigger.get_name())
 
 func scene_change(scene_trigger):
-	var sceneChangePlayer: AnimationPlayer = get_viewport().get_node("SceneChangePlayer");
+	var sceneChangePlayer = world.get_node("SceneChangePlayer")
 	sceneChangePlayer.play("SceneChangeFade")
 	yield(get_tree().create_timer(0.3), "timeout")
 	
@@ -83,12 +80,13 @@ func scene_change(scene_trigger):
 		var n:
 			next_scene = scene_trigger.substr(3, n - 3)
 
-	matching_scene_trigger = scene_trigger.replace(next_scene, curr_scene)
+	matching_scene_trigger = scene_trigger.replace(next_scene, curr_scene.get_name())
 	globals.matching_scene_trigger = matching_scene_trigger
-	globals.player_anim = Player.get_animation()
 	ResourceSaver.save("res://GlobalResource.tres", globals)
 	
-	get_tree().change_scene(str(next_scene, ".tscn"))
+	world.remove_child(world.get_child(1))
+	var next_scene_packed = load(str(next_scene, ".tscn"))
+	world.add_child_below_node(world.get_node("SceneChangePlayer"), next_scene_packed.instance())
 
 # ?FIXME: scene triggers have to be manually given group "Scene Trigger"
 # can this be more streamlined?!?!

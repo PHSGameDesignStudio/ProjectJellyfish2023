@@ -85,9 +85,7 @@ texture = ExtResource( 7 )
 
 [node name="Sprite" type="Sprite" parent="Light2D"]
 
-[node name="To Sea Cave 1" type="Area2D" parent="." groups=[
-"Scene Trigger",
-]]
+[node name="To Sea Cave 1" type="Area2D" parent="." groups=["Scene Trigger"]]
 script = ExtResource( 5 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="To Sea Cave 1"]
