@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Get_battle.mp3-f7b09abd81f9449aad8622dbc2c97eaf.mp3str"
+
+[deps]
+
+source_file="res://Resources/Sprites/Audio/Get_battle.mp3"
+dest_files=[ "res://.import/Get_battle.mp3-f7b09abd81f9449aad8622dbc2c97eaf.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

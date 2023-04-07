@@ -30,6 +30,11 @@ config/name="ProjectJellyfish2023"
 run/main_scene="res://Project Jellyfish.tscn"
 config/icon="res://icon.png"
 
+[display]
+
+window/size/width=1920
+window/size/height=1080
+
 [gui]
 
 common/drop_mouse_on_gui_input_disabled=true
