@@ -1,0 +1,25 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Battle/SkillCheck/SkillCheck.gd" type="Script" id=1]
+
+[node name="SkillCheck" type="Node2D"]
+position = Vector2( 216, 101 )
+script = ExtResource( 1 )
+weapon_halflength = 25.0
+target_rotation_size = 30
+shake_radius = 25
+
+[node name="Line" type="Line2D" parent="."]
+default_color = Color( 1, 1, 1, 1 )
+
+[node name="Target" type="Line2D" parent="."]
+width = 20.0
+default_color = Color( 1, 1, 1, 1 )
+
+[node name="Weapon" type="Line2D" parent="."]
+default_color = Color( 1, 1, 1, 1 )
+
+[node name="ShakeTimer" type="Timer" parent="."]
+wait_time = 0.5
+
+[connection signal="timeout" from="ShakeTimer" to="." method="_on_ShakeTimer_timeout"]
