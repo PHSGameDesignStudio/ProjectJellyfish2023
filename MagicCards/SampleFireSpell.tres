@@ -1,0 +1,12 @@
+[gd_resource type="Resource" load_steps=3 format=2]
+
+[ext_resource path="res://MagicCards/MagicCardItem.gd" type="Script" id=1]
+[ext_resource path="res://Resources/Sprites/Magic/spellcard_sample_fire.png" type="Texture" id=2]
+
+[resource]
+script = ExtResource( 1 )
+spell_name = "Fire Spell"
+spell_description = "lorem"
+element = 3
+incantation = PoolIntArray( 0, 1, 1, 3 )
+spell_card_image = ExtResource( 2 )
