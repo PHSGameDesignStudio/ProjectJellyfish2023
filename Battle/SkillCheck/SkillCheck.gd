@@ -72,7 +72,8 @@ func create_new_target():
 	draw_target_line()
 
 func end():
-	queue_free()
+	NodeManager.set_active_false(self)
+	#queue_free()
 	pass
 	# or hide object
 

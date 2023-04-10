@@ -18,10 +18,16 @@ _global_script_classes=[ {
 "class": "InventoryItem",
 "language": "GDScript",
 "path": "res://InventoryItems/InventoryItem.gd"
+}, {
+"base": "Resource",
+"class": "Magic_Card_Item",
+"language": "GDScript",
+"path": "res://MagicCards/MagicCardItem.gd"
 } ]
 _global_script_class_icons={
 "GlobalResource": "",
-"InventoryItem": ""
+"InventoryItem": "",
+"Magic_Card_Item": ""
 }
 
 [application]
@@ -29,6 +35,10 @@ _global_script_class_icons={
 config/name="ProjectJellyfish2023"
 run/main_scene="res://Project Jellyfish.tscn"
 config/icon="res://icon.png"
+
+[autoload]
+
+NodeManager="*res://Utility/NodeManager.gd"
 
 [display]
 

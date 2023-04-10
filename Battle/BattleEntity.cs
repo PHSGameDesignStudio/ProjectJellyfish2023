@@ -64,7 +64,7 @@ public class BattleEntity : Node2D
 
 		// If we arent selecting any entities there is no need to show the select sprite.
 		if (BattleManager.battleState != BattleManager.BattleState.PlayerSelectEntity)
-			selectUI.SetProcess(false);
+			selectUI.SetActiveFalse();
 
 
 	}

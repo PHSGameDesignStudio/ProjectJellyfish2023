@@ -34,7 +34,7 @@ public class BattleManager : Node
 	public Control entitySelectorUI;
 	public Dictionary<BattleState, Node> currentUI;
 	public static string objName;
-	void Start()
+	public override void _Ready()
 	{
 		Instance = this;
 		battleBox = GetNode("BattleBox");
@@ -55,7 +55,7 @@ public class BattleManager : Node
 		InitEntities();
 	}
 	
-	void Update()
+	public override void _Process(float delta)
 	{
 		// Reset isAttackDone to Default
 		if (battleState == BattleState.EntityTurn && IsAllBattlesOver())
@@ -67,7 +67,7 @@ public class BattleManager : Node
 
 		// Enables UI for mode
 		foreach (var item in currentUI)
-			item.Value.SetProcess(item.Key == battleState);
+			item.Value.SetActive(item.Key == battleState);
 	}
 	bool IsAllBattlesOver()
 	{

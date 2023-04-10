@@ -21,7 +21,7 @@ public class EntitySelector : Node
 		{
 			var e = BattleManager.entities[i];
 			var s = e.GetNode("selectUI");
-			s.SetProcess(i == selectedEntity);
+			s.SetActive(i == selectedEntity);
 		}
 		var verticalAxis = Input.GetAxis("ui_down", "ui_up");
 		if (verticalAxis != 0 && timer <= 0)
