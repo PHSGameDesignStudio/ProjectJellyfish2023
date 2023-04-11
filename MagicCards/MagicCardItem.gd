@@ -9,5 +9,5 @@ const Element = {
 export (String) var spell_name
 export (String) var spell_description
 export (Element) var element
-export (PoolIntArray) var incantation
+export (Array) var incantation
 export (Texture) var spell_card_image

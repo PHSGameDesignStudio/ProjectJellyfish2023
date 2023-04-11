@@ -8,10 +8,9 @@ export var idk_texture : Texture
 export var time : float = 1.0
 onready var incantation_items = [$Incantations/Item1, $Incantations/Item2, $Incantations/Item3, $Incantations/Item4]
 onready var wand = $Wand/Wand
-var incantation_indexes = []
+onready var incantation = []
 var index = 0
 onready var wand_tween : SceneTreeTween = get_tree().create_tween()
-
 func _ready():
 	$IncantationTimer.wait_time = time
 
@@ -38,20 +37,27 @@ func _on_IncantationTimer_timeout():
 	if index < len(incantation_items):
 		if Input.is_action_pressed("ui_right"):
 			incantation_items[index].texture = right_texture
-			incantation_indexes = 0
+			incantation.append(0)
 		elif Input.is_action_pressed("ui_left"):
 			incantation_items[index].texture = left_texture
-			incantation_indexes = 2
+			incantation.append(2)
 		elif Input.is_action_pressed("ui_up"):
 			incantation_items[index].texture = up_texture
-			incantation_indexes = 1
+			incantation.append(1)
 		elif Input.is_action_pressed("ui_down"):
 			incantation_items[index].texture = down_texture
-			incantation_indexes = 3
+			incantation.append(3)
 		else:
 			incantation_items[index].texture = idk_texture
-			incantation_indexes = -1
+			incantation.append(-1)
 		incantation_items[index].rect_scale = Vector2.ZERO
 		var tween = get_tree().create_tween()
 		tween.tween_property(incantation_items[index], "rect_scale", Vector2.ONE * 0.75, 0.1).set_trans(Tween.EASE_OUT)
 		index += 1
+	elif index == len(incantation_items):
+		var incN = DataManager.GetIncantationIndex(incantation)
+		if (incN == -1):
+			NodeManager.set_active_false(self) # temporary until i implement shake
+			# may want to implement shake as a seperate node that can be added on easily
+			# also doesn't work as intended. always returning negative 1
+			# FIX THIS!!!

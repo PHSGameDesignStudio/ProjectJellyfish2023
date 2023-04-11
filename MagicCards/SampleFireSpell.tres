@@ -8,5 +8,5 @@ script = ExtResource( 1 )
 spell_name = "Fire Spell"
 spell_description = "lorem"
 element = 3
-incantation = PoolIntArray( 0, 1, 1, 3 )
+incantation = [ 0, 1, 1, 3 ]
 spell_card_image = ExtResource( 2 )
