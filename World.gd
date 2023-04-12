@@ -4,7 +4,7 @@ onready var world = get_tree().get_current_scene()
 onready var curr_scene = self
 export var matching_scene_trigger = ""
 #onready var player = world.get_node("Player")
-onready var player = get_node("/root/Player")
+onready var player = world.get_node("Player")
 onready var globals = preload("res://GlobalResource.tres")
 
 
