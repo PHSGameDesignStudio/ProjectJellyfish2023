@@ -40,6 +40,7 @@ config/icon="res://icon.png"
 
 NodeManager="*res://Utility/NodeManager.gd"
 DataManager="*res://DataManager.cs"
+Player="*res://Player.tscn"
 
 [display]
 
