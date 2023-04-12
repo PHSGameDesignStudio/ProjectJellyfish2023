@@ -1,5 +1,6 @@
 extends Control
 
+var horizontal_shake_prefab : PackedScene = preload("res://Utility/HorizontalShake.tscn")
 export var right_texture : Texture
 export var left_texture : Texture
 export var up_texture : Texture
@@ -57,7 +58,9 @@ func _on_IncantationTimer_timeout():
 	elif index == len(incantation_items):
 		var incN = DataManager.GetIncantationIndex(incantation)
 		if (incN == -1):
-			NodeManager.set_active_false(self) # temporary until i implement shake
+			$Incantations.add_child(horizontal_shake_prefab.instance())
+		index += 1
+			#NodeManager.set_active_false(self) # temporary until i implement shake
 			# may want to implement shake as a seperate node that can be added on easily
 			# also doesn't work as intended. always returning negative 1
 			# FIX THIS!!!

@@ -102,6 +102,24 @@ public class DeckOfCards : Control
 	public static int GetIncantationIndex(Godot.Collections.Array incantation)
 	{
 		int[] inc = incantation.ToArray<int>();
-		return DOC.incantations.IndexOf(inc);
+		/*
+		GD.Print("this incantation -- ");
+		GD.Print($"{inc[0]}{inc[1]}{inc[2]}{inc[3]}");
+		GD.Print("incantations -- ");
+		foreach (var i in DOC.incantations)
+		{
+			GD.Print($"{i[0]}{i[1]}{i[2]}{i[3]}");
+		}*/
+		int index = DOC.incantations.FindIndex(
+			delegate (int[] thisIncantation)
+			{
+				if (inc.Length == thisIncantation.Length)
+					for (int i = 0; i < inc.Length; i++)
+						if (inc[i] != thisIncantation[i])
+							return false;
+				return true;
+			}
+		);
+		return index;
 	}
 }
