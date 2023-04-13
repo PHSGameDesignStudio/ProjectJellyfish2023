@@ -30,6 +30,11 @@ config/name="ProjectJellyfish2023"
 run/main_scene="res://Project Jellyfish.tscn"
 config/icon="res://icon.png"
 
+[autoload]
+
+NodeManager="*res://Utility/NodeManager.gd"
+DataManager="*res://DataManager.cs"
+
 [gui]
 
 common/drop_mouse_on_gui_input_disabled=true
