@@ -3,14 +3,14 @@ extends Node2D
 onready var world = get_tree().get_current_scene()
 onready var curr_scene = self
 export var matching_scene_trigger = ""
-#onready var player = world.get_node("Player")
-onready var player = world.get_node("Player")
 onready var globals = preload("res://GlobalResource.tres")
 
 
 func _ready():
 	curr_scene = world.get_child(2)
 	print("\nNew scene instance! (", curr_scene.get_name(), ")\n")
+	
+	var player = world.get_node("Player")
 	
 	var map_limits
 	var map_cellsize
@@ -21,6 +21,8 @@ func _ready():
 	ResourceSaver.save("res://GlobalResource.tres", globals)
 	
 	if curr_scene.get_name() == "Starting Cave":
+		var start_position = curr_scene.get_node("PlayerStart")
+		player.global_position = start_position.global_position
 		map_limits = curr_scene.get_node("TileMapStartingCave").get_used_rect()
 		map_cellsize = curr_scene.get_node("TileMapStartingCave").cell_size
 		cam.zoom.x = 0.5
@@ -35,6 +37,11 @@ func _ready():
 		map_cellsize = curr_scene.get_node("TileMapAmon'sCave").cell_size
 		cam.zoom.x = 0.5
 		cam.zoom.y = 0.575
+	elif curr_scene.get_name() == "Sea Cave 2":
+		map_limits = curr_scene.get_node("SeaCave2TileMap").get_used_rect()
+		map_cellsize = curr_scene.get_node("SeaCave2TileMap").cell_size
+		cam.zoom.x = 1
+		cam.zoom.y =1
 	else:
 		pass
 	
@@ -50,8 +57,7 @@ func _ready():
 			var position = scene_trigger.get_child(1).global_position
 			player.global_position = position
 	else:
-		var start_position = curr_scene.get_node("PlayerStart")
-		player.global_position = start_position.global_position
+		pass
 	
 	register_scene_triggers()
 
@@ -96,3 +102,5 @@ func register_scene_triggers():
 	
 	for scene_trigger in scene_triggers:
 		scene_trigger.connect("body_entered", self, "on_scene_trigger_entered", [scene_trigger])
+		
+
