@@ -14,6 +14,7 @@ func _ready():
 	
 	var map_limits
 	var map_cellsize
+	var tile_map =  curr_scene.get_node("Tile Map")
 	var cam = player.get_node("Camera2D")
 	
 	matching_scene_trigger = globals.matching_scene_trigger
@@ -23,28 +24,24 @@ func _ready():
 	if curr_scene.get_name() == "Starting Cave":
 		var start_position = curr_scene.get_node("PlayerStart")
 		player.global_position = start_position.global_position
-		map_limits = curr_scene.get_node("TileMapStartingCave").get_used_rect()
-		map_cellsize = curr_scene.get_node("TileMapStartingCave").cell_size
 		cam.zoom.x = 0.5
 		cam.zoom.y = 0.575
 	elif curr_scene.get_name() == "Sea Cave 1":
-		map_limits = curr_scene.get_node("SeaCave1TileMap").get_used_rect()
-		map_cellsize = curr_scene.get_node("SeaCave1TileMap").cell_size
 		cam.zoom.x = 1
 		cam.zoom.y = 1
 	elif curr_scene.get_name() == "Amon's Cave":
-		map_limits = curr_scene.get_node("TileMapAmon'sCave").get_used_rect()
-		map_cellsize = curr_scene.get_node("TileMapAmon'sCave").cell_size
 		cam.zoom.x = 0.5
 		cam.zoom.y = 0.575
 	elif curr_scene.get_name() == "Sea Cave 2":
-		map_limits = curr_scene.get_node("SeaCave2TileMap").get_used_rect()
-		map_cellsize = curr_scene.get_node("SeaCave2TileMap").cell_size
 		cam.zoom.x = 1
 		cam.zoom.y =1
 	else:
 		pass
 	
+	
+	map_limits = tile_map.get_used_rect()
+	map_cellsize = tile_map.cell_size
+		
 	cam.limit_left = map_limits.position.x  * map_cellsize.x
 	cam.limit_top = map_limits.position.y * map_cellsize.y
 	cam.limit_right = map_limits.end.x * map_cellsize.x
