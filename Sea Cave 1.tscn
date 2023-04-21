@@ -129,7 +129,7 @@ extents = Vector2( 32.8329, 64.1443 )
 [node name="Sea Cave 1" type="Node2D"]
 script = ExtResource( 7 )
 
-[node name="SeaCave1TileMap" type="TileMap" parent="."]
+[node name="Tile Map" type="TileMap" parent="."]
 z_index = -1000
 tile_set = SubResource( 1 )
 cell_size = Vector2( 32, 32 )
@@ -188,7 +188,7 @@ shape = SubResource( 9 )
 tile_set = ExtResource( 9 )
 cell_size = Vector2( 32, 32 )
 format = 1
-tile_data = PoolIntArray( 131101, 4, 0, 131102, 4, 0, 131103, 4, 0, 131104, 4, 0, 131105, 4, 0, 131106, 4, 0, 196637, 4, 0, 196642, 4, 0, 262173, 4, 0, 262175, 4, 0, 262176, 4, 0, 262178, 4, 0, 327709, 4, 0, 327711, 4, 0, 327712, 4, 0, 327714, 4, 0, 393245, 4, 0, 393247, 4, 0, 393248, 4, 0, 393250, 4, 0 )
+tile_data = PoolIntArray( 196638, 4, 0, 196639, 4, 0, 196640, 4, 0, 196641, 4, 0, 262174, 4, 0, 262175, 4, 0, 262176, 4, 0, 262177, 4, 0, 327710, 4, 0, 327711, 4, 0, 327712, 4, 0, 327713, 4, 0, 393246, 4, 0, 393247, 4, 0, 393248, 4, 0, 393249, 4, 0 )
 
 [node name="ColorRect" type="ColorRect" parent="."]
 margin_left = 991.955
