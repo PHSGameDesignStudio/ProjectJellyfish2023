@@ -122,9 +122,7 @@ shape = SubResource( 4 )
 position = Vector2( 513.5, -432.379 )
 shape = SubResource( 5 )
 
-[node name="To Sea Cave 2" type="Area2D" parent="." groups=[
-"Scene Trigger",
-]]
+[node name="To Sea Cave 2" type="Area2D" parent="." groups=["Scene Trigger"]]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="To Sea Cave 2"]
 position = Vector2( 511.544, 377.682 )
