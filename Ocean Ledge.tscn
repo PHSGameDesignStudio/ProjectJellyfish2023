@@ -11,10 +11,10 @@ extents = Vector2( 17.5504, 421.394 )
 [sub_resource type="RectangleShape2D" id=3]
 extents = Vector2( 14.3586, 368.243 )
 
-[sub_resource type="RectangleShape2D" id=7]
+[sub_resource type="RectangleShape2D" id=4]
 extents = Vector2( 32.0571, 368.243 )
 
-[sub_resource type="RectangleShape2D" id=8]
+[sub_resource type="RectangleShape2D" id=5]
 extents = Vector2( 128.135, 368.243 )
 
 [sub_resource type="RectangleShape2D" id=6]
@@ -110,15 +110,15 @@ shape = SubResource( 3 )
 
 [node name="CollisionShape2D12" type="CollisionShape2D" parent="Walls"]
 position = Vector2( 321.345, -376.755 )
-shape = SubResource( 7 )
+shape = SubResource( 4 )
 
 [node name="CollisionShape2D16" type="CollisionShape2D" parent="Walls"]
 position = Vector2( 708.184, -366.641 )
-shape = SubResource( 7 )
+shape = SubResource( 4 )
 
 [node name="CollisionShape2D14" type="CollisionShape2D" parent="Walls"]
 position = Vector2( 513.5, -432.379 )
-shape = SubResource( 8 )
+shape = SubResource( 5 )
 
 [node name="To Sea Cave 2" type="Area2D" parent="." groups=[
 "Scene Trigger",

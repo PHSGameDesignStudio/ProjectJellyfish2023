@@ -4,7 +4,7 @@ onready var world = get_tree().get_current_scene()
 onready var curr_scene = self
 export var matching_scene_trigger = ""
 onready var globals = preload("res://GlobalResource.tres")
-
+export var next_scene_packed: Resource
 
 func _ready():
 	curr_scene = world.get_child(2)
@@ -89,8 +89,8 @@ func scene_change(scene_trigger):
 	ResourceSaver.save("res://GlobalResource.tres", globals)
 	
 	world.remove_child(world.get_child(1))
-	var next_scene_packed = load(str(next_scene, ".tscn"))
-	world.add_child_below_node(world.get_node("SceneChangePlayer"), next_scene_packed.instance())
+	next_scene_packed = load(str(next_scene, ".tscn"))
+	(world.add_child_below_node(world.get_node("SceneChangePlayer"), next_scene_packed.instance()))
 
 # ?FIXME: scene triggers have to be manually given group "Scene Trigger"
 # can this be more streamlined?!?!
