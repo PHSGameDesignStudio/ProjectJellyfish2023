@@ -19,19 +19,15 @@ func _ready():
 	globals.matching_scene_trigger = ""
 	ResourceSaver.save("res://GlobalResource.tres", globals)
 	
+	
+	map_limits = curr_scene.get_node("TileMap").get_used_rect()
+	map_cellsize = curr_scene.get_node("TileMap").cell_size
+	cam.zoom.x = 1
+	cam.zoom.y = 1
 	if curr_scene.get_name() == "Starting Cave":
-		map_limits = curr_scene.get_node("TileMapStartingCave").get_used_rect()
-		map_cellsize = curr_scene.get_node("TileMapStartingCave").cell_size
 		cam.zoom.x = 0.5
 		cam.zoom.y = 0.575
-	elif curr_scene.get_name() == "Sea Cave 1":
-		map_limits = curr_scene.get_node("SeaCave1TileMap").get_used_rect()
-		map_cellsize = curr_scene.get_node("SeaCave1TileMap").cell_size
-		cam.zoom.x = 1
-		cam.zoom.y = 1
 	elif curr_scene.get_name() == "Amon's Cave":
-		map_limits = curr_scene.get_node("TileMapAmon'sCave").get_used_rect()
-		map_cellsize = curr_scene.get_node("TileMapAmon'sCave").cell_size
 		cam.zoom.x = 0.5
 		cam.zoom.y = 0.575
 	else:
